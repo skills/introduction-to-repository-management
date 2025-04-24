@@ -1,0 +1,127 @@
+name: Step 1
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - prepare-to-collaborate
+    paths:
+      - ".gitignore"
+
+permissions:
+  contents: write
+  actions: write
+  issues: write
+
+jobs:
+  find_exercise:
+    name: Find Exercise Issue
+    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.1.0
+
+  check_step_work:
+    name: Check step work
+    needs: find_exercise
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # START: Check practical exercise
+
+      - name: Check gitignore content
+        id: check-gitignore
+        continue-on-error: true
+        run: |
+          # Check for Python patterns
+          if ! grep -q "^# Python" .gitignore || ! grep -q "__pycache__" .gitignore; then
+            echo "result=fail" >> $GITHUB_OUTPUT 
+            echo "reason=Your .gitignore is missing Python-specific patterns" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Check for virtual env patterns  
+          if ! grep -q "^# Virtual Environment" .gitignore || ! grep -q "venv/" .gitignore; then
+            echo "result=fail" >> $GITHUB_OUTPUT
+            echo "reason=Your .gitignore is missing virtual environment patterns" >> $GITHUB_OUTPUT  
+            exit 0
+          fi
+
+          # Check for IDE patterns
+          if ! grep -q "^# IDE" .gitignore || ! grep -q ".vscode/" .gitignore; then
+            echo "result=fail" >> $GITHUB_OUTPUT
+            echo "reason=Your .gitignore is missing IDE-specific patterns" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "result=pass" >> $GITHUB_OUTPUT
+
+      # END: Check practical exercise
+
+      - name: Build message - step results
+        id: build-message-step-results
+        uses: skills/action-text-variables@v2
+        with:
+          template-file: skills-response-templates/step-feedback/step-results.md
+          template-vars: >
+            {
+              "step_number": 3
+              "passed": ${{ steps.check-gitignore.outputs.passed }},
+              "results_table": ${{ steps.check-gitignore.outputs.results }},
+              "tips": [
+              "Copilot is becoming more capable everyday. Make sure to always be experimenting!",
+              "Try testing what Copilot can do. Something like: Add a dark mode toggle in the top right."
+              ]
+            }
+
+      - name: Create comment - step results
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body "$COMMENT_BODY" \
+            --edit-last
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENT_BODY: ${{ steps.build-message-step-results.outputs.updated-text }}
+
+      - name: Fail job if not all checks passed
+        if: steps.check-gitignore.outputs.passed == 'false'
+        run: exit 1
+
+  post_next_step_content:
+    name: Post next step content
+    needs: [find_exercise, check_step_work]
+    runs-on: ubuntu-latest
+    env:
+      ISSUE_URL: ${{ needs.find_exercise.outputs.issue-url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get response templates
+        uses: actions/checkout@v4
+        with:
+          repository: skills/response-templates
+          path: skills-response-templates
+
+      - name: Create comment - add step content
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body-file "$STEP_3_FILE"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create comment - watching for progress
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body-file skills-response-templates/step-feedback/watching-for-progress.md
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Disable current workflow and enable next one
+        run: |
+          gh workflow disable "Step 2"
+          gh workflow enable "Step 3"
+          gh workflow enable "Step 3b"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
