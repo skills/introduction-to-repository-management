@@ -1,0 +1,178 @@
+name: Step 4, Prepare for the inevitable
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+permissions:
+  contents: write
+  actions: write
+  issues: write
+
+env:
+  REVIEW_FILE: ".github/steps/x-review.md"
+
+jobs:
+  find_exercise:
+    name: Find Exercise Issue
+    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.1.0
+
+  check_step_work:
+    name: Check step work
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    needs: [find_exercise]
+    env:
+      ISSUE_URL: ${{ needs.find_exercise.outputs.issue-url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get response templates
+        uses: actions/checkout@v4
+        with:
+          repository: skills/response-templates
+          path: skills-response-templates
+
+      - name: Update comment - checking work
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body-file skills-response-templates/step-feedback/checking-work.md \
+            --edit-last
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # START: Check practical exercise
+      - name: Check for security PR creation
+        id: check-security-pr
+        run: |
+          # Verify this is a PR with appropriate title related to security features
+          PR_TITLE=$(jq -r '.pull_request.title' $GITHUB_EVENT_PATH)
+          if [[ $PR_TITLE == *"security"* ]] || [[ $PR_TITLE == *"Security"* ]] || [[ $PR_TITLE == *"audit"* ]]; then
+            echo "result=complete" >> $GITHUB_OUTPUT
+          else
+            echo "result=incomplete" >> $GITHUB_OUTPUT
+          fi
+        continue-on-error: true
+
+      - name: Check for SECURITY.md file
+        id: check-security-policy
+        run: |
+          if [ ! -f "SECURITY.md" ]; then
+            echo "result=missing" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          if ! grep -q "Mergington High" "SECURITY.md" || \
+             ! grep -q "student" "SECURITY.md"; then
+            echo "result=incomplete" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          echo "result=complete" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Generate results table
+        id: results
+        run: |
+          echo "table<<EOF" >> $GITHUB_OUTPUT
+          echo "| Task | Result |" >> $GITHUB_OUTPUT
+          echo "|------|--------|" >> $GITHUB_OUTPUT
+          echo "| Security Features Pull Request | ${{ steps.check-security-pr.outputs.result == 'complete' && '✓' || '✗' }} |" >> $GITHUB_OUTPUT
+          echo "| Security Policy | ${{ steps.check-security-policy.outputs.result == 'complete' && '✓' || '✗' }} |" >> $GITHUB_OUTPUT
+          echo "| Pull Request Merged | ✓ |" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          if [ "${{ steps.check-security-pr.outputs.result }}" != "complete" ] || \
+             [ "${{ steps.check-security-policy.outputs.result }}" != "complete" ]; then
+            echo "failed=true" >> $GITHUB_OUTPUT
+            
+            echo "message<<EOF" >> $GITHUB_OUTPUT
+            if [ "${{ steps.check-security-pr.outputs.result }}" == "incomplete" ]; then
+              echo "Your pull request title should mention security features or the district audit. This helps make the purpose of your changes clear." >> $GITHUB_OUTPUT
+            fi
+            
+            if [ "${{ steps.check-security-policy.outputs.result }}" == "missing" ]; then
+              echo "I don't see a SECURITY.md file. Did you create it in the add-security-features branch?" >> $GITHUB_OUTPUT
+            elif [ "${{ steps.check-security-policy.outputs.result }}" == "incomplete" ]; then
+              echo "The Security Policy should be customized for Mergington High School and mention student data protection." >> $GITHUB_OUTPUT
+            fi
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+      # END: Check practical exercise
+
+      - name: Build message - step finished
+        if: ${{ !steps.results.outputs.failed }}
+        id: build-message-step-finish
+        uses: skills/action-text-variables@v1
+        with:
+          template-file: skills-response-templates/step-feedback/lesson-review.md
+
+      - name: Build message - step failed
+        if: ${{ steps.results.outputs.failed }}
+        id: build-message-step-failed
+        uses: skills/action-text-variables@v1
+        with:
+          template-file: skills-response-templates/step-feedback/step-mistake.md
+          template-vars: |
+            table=${{ steps.results.outputs.table }}
+            step_number=4
+            message=${{ steps.results.outputs.message }}
+
+      - name: Update comment - step status
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body "$ISSUE_BODY" \
+            --edit-last
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_BODY: ${{ steps.results.outputs.failed && steps.build-message-step-failed.outputs.updated-text || steps.build-message-step-finish.outputs.updated-text }}
+
+  post_review_content:
+    name: Post review content
+    if: ${{ needs.check_step_work.result == 'success' }}
+    needs: [find_exercise, check_step_work]
+    runs-on: ubuntu-latest
+    env:
+      ISSUE_URL: ${{ needs.find_exercise.outputs.issue-url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get response templates
+        uses: actions/checkout@v4
+        with:
+          repository: skills/response-templates
+          path: skills-response-templates
+
+      - name: Create comment - add step content
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body-file "$REVIEW_FILE"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  finish_exercise:
+    name: Finish Exercise
+    needs: [find_exercise, post_review_content]
+    uses: skills/exercise-toolkit/.github/workflows/finish-exercise.yml@v0.3.0
+    with:
+      issue-url: ${{ needs.find_exercise.outputs.issue-url }}
+
+  disable_workflow:
+    name: Disable this workflow
+    needs: [find_exercise, post_review_content]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Disable current workflow
+        run: gh workflow disable "${{github.workflow}}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
