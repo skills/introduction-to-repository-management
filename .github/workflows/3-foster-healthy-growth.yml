@@ -1,0 +1,210 @@
+name: Step 3, Foster healthy growth
+
+on:
+  push:
+    branches:
+      - foster-healthy-growth
+
+permissions:
+  contents: read
+  actions: write
+  issues: write
+
+env:
+  STEP_4_FILE: ".github/steps/4-fix-security-issues.md"
+
+jobs:
+  find_exercise:
+    name: Find Exercise Issue
+    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.1.0
+
+  check_step_work:
+    name: Check step work
+    runs-on: ubuntu-latest
+    needs: [find_exercise]
+    env:
+      ISSUE_URL: ${{ needs.find_exercise.outputs.issue-url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get response templates
+        uses: actions/checkout@v4
+        with:
+          repository: skills/response-templates
+          path: skills-response-templates
+
+      - name: Update comment - checking work
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body-file skills-response-templates/step-feedback/checking-work.md \
+            --edit-last
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # START: Check practical exercise
+      - name: Check for Code of Conduct
+        id: check-code-of-conduct
+        run: |
+          if [ ! -f "CODE_OF_CONDUCT.md" ]; then
+            echo "result=missing" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          if ! grep -q "Mergington High School" "CODE_OF_CONDUCT.md" || \
+             ! grep -q "school community" "CODE_OF_CONDUCT.md"; then
+            echo "result=incomplete" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          echo "result=complete" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Check for Issue Templates
+        id: check-issue-templates
+        run: |
+          if [ ! -d ".github/ISSUE_TEMPLATE" ]; then
+            echo "result=missing" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          if [ ! -f ".github/ISSUE_TEMPLATE/bug_report.md" ] || \
+             [ ! -f ".github/ISSUE_TEMPLATE/feature_request.md" ]; then
+            echo "result=incomplete" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          if ! grep -q "Extra-Curricular" ".github/ISSUE_TEMPLATE/bug_report.md" || \
+             ! grep -q "Extra-Curricular" ".github/ISSUE_TEMPLATE/feature_request.md"; then
+            echo "result=incomplete_content" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          echo "result=complete" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Check for Security Policy
+        id: check-security-policy
+        run: |
+          if [ ! -f "SECURITY.md" ]; then
+            echo "result=missing" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          if ! grep -q "Mergington High" "SECURITY.md" || \
+             ! grep -q "student" "SECURITY.md"; then
+            echo "result=incomplete" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          echo "result=complete" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Generate results table
+        id: results
+        run: |
+          echo "table<<EOF" >> $GITHUB_OUTPUT
+          echo "| Task | Result |" >> $GITHUB_OUTPUT
+          echo "|------|--------|" >> $GITHUB_OUTPUT
+          echo "| Code of Conduct | ${{ steps.check-code-of-conduct.outputs.result == 'complete' && '✓' || '✗' }} |" >> $GITHUB_OUTPUT
+          echo "| Issue Templates | ${{ steps.check-issue-templates.outputs.result == 'complete' && '✓' || '✗' }} |" >> $GITHUB_OUTPUT
+          echo "| Security Policy | ${{ steps.check-security-policy.outputs.result == 'complete' && '✓' || '✗' }} |" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          if [ "${{ steps.check-code-of-conduct.outputs.result }}" != "complete" ] || \
+             [ "${{ steps.check-issue-templates.outputs.result }}" != "complete" ] || \
+             [ "${{ steps.check-security-policy.outputs.result }}" != "complete" ]; then
+            echo "failed=true" >> $GITHUB_OUTPUT
+            
+            echo "message<<EOF" >> $GITHUB_OUTPUT
+            if [ "${{ steps.check-code-of-conduct.outputs.result }}" == "missing" ]; then
+              echo "I don't see a CODE_OF_CONDUCT.md file. Did you create it in the foster-healthy-growth branch?" >> $GITHUB_OUTPUT
+            elif [ "${{ steps.check-code-of-conduct.outputs.result }}" == "incomplete" ]; then
+              echo "The Code of Conduct should be customized for Mergington High School. Make sure it mentions the school community." >> $GITHUB_OUTPUT
+            fi
+            
+            if [ "${{ steps.check-issue-templates.outputs.result }}" == "missing" ]; then
+              echo "I don't see the .github/ISSUE_TEMPLATE directory. Did you create it in the foster-healthy-growth branch?" >> $GITHUB_OUTPUT
+            elif [ "${{ steps.check-issue-templates.outputs.result }}" == "incomplete" ]; then
+              echo "Make sure you've created both bug_report.md and feature_request.md templates in the .github/ISSUE_TEMPLATE directory." >> $GITHUB_OUTPUT
+            elif [ "${{ steps.check-issue-templates.outputs.result }}" == "incomplete_content" ]; then
+              echo "Make sure your issue templates are customized for the Extra-Curricular Activities website." >> $GITHUB_OUTPUT
+            fi
+            
+            if [ "${{ steps.check-security-policy.outputs.result }}" == "missing" ]; then
+              echo "I don't see a SECURITY.md file. Did you create it in the foster-healthy-growth branch?" >> $GITHUB_OUTPUT
+            elif [ "${{ steps.check-security-policy.outputs.result }}" == "incomplete" ]; then
+              echo "The Security Policy should be customized for Mergington High School and mention student data protection." >> $GITHUB_OUTPUT
+            fi
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+      # END: Check practical exercise
+
+      - name: Build message - step finished
+        if: ${{ !steps.results.outputs.failed }}
+        id: build-message-step-finish
+        uses: skills/action-text-variables@v1
+        with:
+          template-file: skills-response-templates/step-feedback/step-finished-prepare-next-step.md
+          template-vars: |
+            next_step_number=4
+
+      - name: Build message - step failed
+        if: ${{ steps.results.outputs.failed }}
+        id: build-message-step-failed
+        uses: skills/action-text-variables@v1
+        with:
+          template-file: skills-response-templates/step-feedback/step-mistake.md
+          template-vars: |
+            table=${{ steps.results.outputs.table }}
+            step_number=3
+            message=${{ steps.results.outputs.message }}
+
+      - name: Update comment - step status
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body "$ISSUE_BODY" \
+            --edit-last
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_BODY: ${{ steps.results.outputs.failed && steps.build-message-step-failed.outputs.updated-text || steps.build-message-step-finish.outputs.updated-text }}
+
+  post_next_step_content:
+    name: Post next step content
+    if: ${{ needs.check_step_work.result == 'success' }}
+    needs: [find_exercise, check_step_work]
+    runs-on: ubuntu-latest
+    env:
+      ISSUE_URL: ${{ needs.find_exercise.outputs.issue-url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get response templates
+        uses: actions/checkout@v4
+        with:
+          repository: skills/response-templates
+          path: skills-response-templates
+
+      - name: Create comment - add step content
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body-file "$STEP_4_FILE"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create comment - watching for progress
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body-file skills-response-templates/step-feedback/watching-for-progress.md
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Disable current workflow and enable next one
+        run: |
+          gh workflow disable "Step 3, Foster healthy growth"
+          gh workflow enable "Step 4"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
