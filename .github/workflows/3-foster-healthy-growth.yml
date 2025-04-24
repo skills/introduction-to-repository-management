@@ -11,7 +11,7 @@ permissions:
   issues: write
 
 env:
-  STEP_4_FILE: ".github/steps/4-fix-security-issues.md"
+  STEP_4_FILE: ".github/steps/4-prepare-for-the-inevitable.md"
 
 jobs:
   find_exercise:
@@ -84,23 +84,6 @@ jobs:
           echo "result=complete" >> $GITHUB_OUTPUT
         continue-on-error: true
 
-      - name: Check for Security Policy
-        id: check-security-policy
-        run: |
-          if [ ! -f "SECURITY.md" ]; then
-            echo "result=missing" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-          
-          if ! grep -q "Mergington High" "SECURITY.md" || \
-             ! grep -q "student" "SECURITY.md"; then
-            echo "result=incomplete" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-          
-          echo "result=complete" >> $GITHUB_OUTPUT
-        continue-on-error: true
-
       - name: Generate results table
         id: results
         run: |
@@ -109,12 +92,10 @@ jobs:
           echo "|------|--------|" >> $GITHUB_OUTPUT
           echo "| Code of Conduct | ${{ steps.check-code-of-conduct.outputs.result == 'complete' && '✓' || '✗' }} |" >> $GITHUB_OUTPUT
           echo "| Issue Templates | ${{ steps.check-issue-templates.outputs.result == 'complete' && '✓' || '✗' }} |" >> $GITHUB_OUTPUT
-          echo "| Security Policy | ${{ steps.check-security-policy.outputs.result == 'complete' && '✓' || '✗' }} |" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
           
           if [ "${{ steps.check-code-of-conduct.outputs.result }}" != "complete" ] || \
-             [ "${{ steps.check-issue-templates.outputs.result }}" != "complete" ] || \
-             [ "${{ steps.check-security-policy.outputs.result }}" != "complete" ]; then
+             [ "${{ steps.check-issue-templates.outputs.result }}" != "complete" ]; then
             echo "failed=true" >> $GITHUB_OUTPUT
             
             echo "message<<EOF" >> $GITHUB_OUTPUT
@@ -130,12 +111,6 @@ jobs:
               echo "Make sure you've created both bug_report.md and feature_request.md templates in the .github/ISSUE_TEMPLATE directory." >> $GITHUB_OUTPUT
             elif [ "${{ steps.check-issue-templates.outputs.result }}" == "incomplete_content" ]; then
               echo "Make sure your issue templates are customized for the Extra-Curricular Activities website." >> $GITHUB_OUTPUT
-            fi
-            
-            if [ "${{ steps.check-security-policy.outputs.result }}" == "missing" ]; then
-              echo "I don't see a SECURITY.md file. Did you create it in the foster-healthy-growth branch?" >> $GITHUB_OUTPUT
-            elif [ "${{ steps.check-security-policy.outputs.result }}" == "incomplete" ]; then
-              echo "The Security Policy should be customized for Mergington High School and mention student data protection." >> $GITHUB_OUTPUT
             fi
             echo "EOF" >> $GITHUB_OUTPUT
           fi

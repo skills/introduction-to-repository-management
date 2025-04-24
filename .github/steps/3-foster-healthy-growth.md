@@ -12,8 +12,6 @@ As your extra-curricular activities website grows, you'll need more than just te
 
 2. **Issue Templates** - These provide structure when someone reports a problem or suggests a new feature. Just like how the school office has different forms for different requests (absence notes, field trip permission slips, etc.), issue templates guide contributors to provide the right information.
 
-3. **Security Policy** - This explains how to responsibly report security vulnerabilities. It's similar to the school's emergency procedures - a clear process to follow when something sensitive is discovered.
-
 > ❕ **Important:** These files don't just help new contributors; they protect your project and its users (in this case, the students and teachers at Mergington High)!
 
 ## Activity 1: Create a Code of Conduct
@@ -146,48 +144,13 @@ Now let's create templates so other teachers can report bugs or request features
    Add any other context or screenshots about the feature request here.
    ```
 
-## Activity 3: Create a Security Policy
-
-Finally, let's create a security policy to guide teachers on reporting sensitive security issues:
-
-1. In your `foster-healthy-growth` branch, create a new file called `SECURITY.md` at the root of your repository
-2. Add the following content:
-
-   ```markdown
-   # Mergington High School Security Policy
-
-   ## Reporting a Vulnerability
-
-   At Mergington High, we take the security of our Extra-Curricular Activities website seriously, especially since it contains student information. If you discover a security vulnerability, please follow these steps:
-
-   1. **Do not** disclose the vulnerability publicly or to other teachers/students
-   2. Email the IT Club faculty advisor at techsupport@mergingtonhigh.example.edu with details about the vulnerability
-   3. Include the following information:
-      - A description of the vulnerability
-      - Steps to reproduce the issue
-      - Potential impact on student data or website functionality
-      - Suggested fix (if you have one)
-
-   ## Response Timeline
-
-   - We will acknowledge receipt of your report within 2 school days
-   - We will provide an initial assessment within 5 school days
-   - Critical issues affecting student data will be addressed immediately
-   - We will keep you informed about our progress in resolving the issue
-
-   ## Thank You
-
-   Your help in keeping our school's digital resources secure is greatly appreciated! Responsible disclosure of security vulnerabilities helps protect our entire school community.
-   ```
-
 When you've completed these activities, commit your changes to the `foster-healthy-growth` branch and create a pull request. These files will provide a strong foundation for healthy collaboration as more teachers join your project!
 
 ## What's next?
 
-With these community guidelines, issue templates, and security policy in place, Mergington High's extra-curricular activities website is now ready to welcome a larger group of teacher-contributors. In the next step, we'll explore how GitHub Copilot can help you and your fellow teachers develop new features more efficiently! 🚀
+With these community guidelines and issue templates in place, Mergington High's extra-curricular activities website is now ready to welcome a larger group of teacher-contributors. In the next step, we'll explore how to prepare for security challenges and establish a process for managing security updates! 🚀
 
 ### References
 
 - [Adding a code of conduct to your project](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-code-of-conduct-to-your-project)
 - [Configuring issue templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository)
-- [Adding a security policy to your repository](https://docs.github.com/en/code-security/getting-started/adding-a-security-policy-to-your-repository)
