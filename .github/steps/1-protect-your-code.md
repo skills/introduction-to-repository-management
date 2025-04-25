@@ -23,11 +23,25 @@ When more teachers start helping with the Mergington High activities website, it
 > [!NOTE]
 > Think of these protections like the editorial process of the Mergington High yearbook. Just as Ms. Peterson reviews all photos and articles before publishing in the yearbook (to prevent typos or inappropriate content), rulesets ensure changes are reviewed before the website is published.
 
-Let's start by making sure we don't accidentally commit files we shouldn't:
+## ⌨️ Activity: Create a `.gitignore` file
 
-1. Create a new branch called `add-protections` from `main`
-2. Create a new file called `.gitignore`
-3. Add the following content:
+Let's start by making sure we don't accidentally commit files:
+
+1. If necessary, open another tab and navigate to this repository. We will start on the **Code** tab.
+
+1. Above the list of files, select the **branch dropdown menu**.
+
+1. Create a new branch with the name `prepare-to-collaborate`.
+
+   <img width="300" alt="image" src="https://github.com/user-attachments/assets/1c04a3e4-e492-4857-9527-2b43908a1da1" />
+
+1. Above the list of files, click the **Add file** dropdown and select **Create new file**.
+
+   <img width="350" alt="New file button" src="https://github.com/user-attachments/assets/8f3f8da8-1471-485a-9df5-8c03ecba2d8e"/>
+
+1. Enter the file name `.gitignore` and copy following example content into it.
+
+   <img width="400" alt="preview of new file" src="https://github.com/user-attachments/assets/580d1a63-a264-4d44-8901-50ad708b8822"/>
 
    ```gitignore
    # Python backend for club management
@@ -56,7 +70,12 @@ Let's start by making sure we don't accidentally commit files we shouldn't:
    Thumbs.db      # For teachers with Windows
    ```
 
-## Activity 2: Protect the school website from accidental changes
+1. In the top right, select the **Commit changes...** button. Notice that it won't let us commit to the `main` branch! Nice!
+
+   <img width="400" alt="image" src="https://github.com/user-attachments/assets/4e85948d-75c8-4c13-8ddd-4707bf9b0805" />
+
+1. Enter `prepare-to-collaborate` for the branch name then click the **Propose changes** button.
+
 
 Now let's add some protections so that no one accidentally breaks the club registration system:
 
