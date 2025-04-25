@@ -20,8 +20,8 @@ When more teachers start helping with the Mergington High activities website, it
    - Force pushing (which can overwrite history)
    - (and much more)
 
-
-## Activity 1: Create a .gitignore file for the club website
+> [!NOTE]
+> Think of these protections like the editorial process of the Mergington High yearbook. Just as Ms. Peterson reviews all photos and articles before publishing in the yearbook (to prevent typos or inappropriate content), rulesets ensure changes are reviewed before the website is published.
 
 Let's start by making sure we don't accidentally commit files we shouldn't:
 
