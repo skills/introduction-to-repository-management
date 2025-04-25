@@ -1,25 +1,25 @@
-# Step 1: Add basic repository protection
+# Step 1: Protect your code
 
-_It's been a busy month at Mergington High! Your simple website for managing extra-curricular activities has really taken off. What started as a basic signup form for the Chess Club has grown into the go-to place for all club activities. 📚✨_
+It's been a busy month at Mergington High! Your simple website for managing extra-curricular activities has really taken off. What started as a basic sign-up form for a few activities has grown into the go-to place for half the school activities. 📚✨
 
-_Principal Martinez was so impressed with your work that they announced at the last staff meeting that ALL clubs should start using the website. While this is exciting, you're a bit nervous - the last thing you want is an accidental change breaking the system right before the big Fall Activities Fair! 😰_
+Principal Martinez was so impressed with your work that they announced at the last staff meeting that ALL clubs should start using the website. While this is exciting, you're a bit nervous - the last thing you want is an accidental change breaking the system right before the big Fall Activities Fair! 😰
 
 ## Theory
 
-When more teachers start helping with the Mergington High activities website, it's important to add some safeguards. GitHub provides several ways to protect your repository:
+When more teachers start helping with the Mergington High activities website, it's important to add some safeguards. Thankfully, GitHub provides several ways to protect your repository:
 
-1. `.gitignore` - This special file tells Git which files it should NOT track, like:
+1. **`.gitignore`** - This special file tells Git which files it should NOT track, like:
 
    - Temporary files that your code creates while running
    - Secret configuration files with sensitive information
    - System files that other developers don't need
 
-2. Repository settings - These control who can:
-   - Push code directly to important branches
-   - Delete or rename branches
-   - Force push (which can overwrite history)
+2. **Repository Rulesets** - These provide safeguards to limit:
+   - Pushing code directly to important branches
+   - Deleting or renaming branches
+   - Force pushing (which can overwrite history)
+   - (and much more)
 
-> ❕ **Important:** While it might seem restrictive to add these protections, they actually help everyone contribute more confidently. It's like having clear hallway rules at Mergington High - they don't stop students from getting to class, they help everyone move safely!
 
 ## Activity 1: Create a .gitignore file for the club website
 
