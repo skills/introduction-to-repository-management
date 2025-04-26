@@ -20,8 +20,8 @@ When more teachers start helping with the Mergington High activities website, it
    - Force pushing (which can overwrite history)
    - (and much more)
 
-> [!NOTE]
-> Think of these protections like the editorial process of the Mergington High yearbook. Just as Ms. Peterson reviews all photos and articles before publishing in the yearbook (to prevent typos or inappropriate content), rulesets ensure changes are reviewed before the website is published.
+> [!TIP]
+> Think of these settings like the editorial process of a school yearbook. Various student committees will take photos and write articles, then the yearbook president will make adjustments to make sure everything flows together properly. Finally, a teacher/advisor will sign off that all content is appropriate.
 
 ## ⌨️ Activity: Create a `.gitignore` file
 
