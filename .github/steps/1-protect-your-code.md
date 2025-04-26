@@ -33,15 +33,15 @@ Let's start by making sure we don't accidentally commit files:
 
 1. Create a new branch with the name `prepare-to-collaborate`.
 
-   <img width="300" alt="image" src="https://github.com/user-attachments/assets/1c04a3e4-e492-4857-9527-2b43908a1da1" />
+   <img width="300" alt="image" src="https://github.com/user-attachments/assets/1c04a3e4-e492-4857-9527-2b43908a1da1"/>
 
 1. Above the list of files, click the **Add file** dropdown and select **Create new file**.
 
-   <img width="350" alt="New file button" src="https://github.com/user-attachments/assets/8f3f8da8-1471-485a-9df5-8c03ecba2d8e"/>
+   <img width="300" alt="New file button" src="https://github.com/user-attachments/assets/8f3f8da8-1471-485a-9df5-8c03ecba2d8e"/>
 
 1. Enter the file name `.gitignore` and copy following example content into it.
 
-   <img width="400" alt="preview of new file" src="https://github.com/user-attachments/assets/580d1a63-a264-4d44-8901-50ad708b8822"/>
+   <img width="300" alt="preview of new file" src="https://github.com/user-attachments/assets/580d1a63-a264-4d44-8901-50ad708b8822"/>
 
    ```gitignore
    # Python backend for club management
