@@ -76,28 +76,44 @@ Let's start by making sure we don't accidentally commit files:
 
 1. Enter `prepare-to-collaborate` for the branch name then click the **Propose changes** button.
 
+## ⌨️ Activity: Add a branch ruleset
 
 Now let's add some protections so that no one accidentally breaks the club registration system:
 
-1. Go to your repository's Settings tab
-2. Click "Branches" in the left sidebar
-3. Under "Branch protection rules", click "Add rule"
-4. For "Branch name pattern" enter `main` (this is where the live website runs)
-5. Check these options:
-   - ✓ "Require a pull request before merging" (so you can review changes to the club website)
-   - ✓ "Require approvals" (set it to 1 - you'll need to approve all changes)
-   - ✓ "Dismiss stale pull request approvals when new commits are pushed" (to ensure you review the final version)
-   - ✓ "Require status checks to pass before merging" (to make sure the club website still works)
+1. In the top navigation, select the **Settings** tab.
 
-> 💡 **Tip:** Think of these settings like the field trip permission forms at Mergington High - just as Ms. Martinez needs to sign off before students leave campus, you'll need to approve code before it affects the live website!
+1. In the left navigation, expand the **Rules** area and select **Rulesets**.
 
-When you've completed the activities, commit your new `.gitignore` file to the `add-protections` branch.
+1. Click the **New ruleset** dropdown and select **New branch ruleset**.
 
-## What's next?
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/1e9fd519-1421-4d6b-b654-a3fe53a8fb75" />
 
-Now that we've protected the Mergington High activities website, we can start setting up guidelines to help your fellow teachers contribute new features for their clubs. In the next step, we'll create documents that explain how they can add new features (like Ms. Rodriguez's art gallery and Mr. Chen's chess tournament system) without breaking the existing registration system. 📝
+1. Set the **Ruleset Name** as `Protect main` and change the **Enforcement status** to `Active`.
 
-### References
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/ce30fd34-39b5-4e22-b348-4af61fd05cd1" />
+
+1. Locate the the **Targets** section. Use the **Add target** dropdown to add 2 entries:
+
+   1. Add the **Include default branch** option to ensure protections aren't bypassed by switching the default branch.
+
+      <img width="300" alt="image" src="https://github.com/user-attachments/assets/217263cc-d5c2-4ac0-b03c-a72494e5c812" />
+
+   1. Use the **include by pattern** option and enter the pattern `main`.
+
+      <img width="300" alt="image" src="https://github.com/user-attachments/assets/47a835de-62dc-4f34-96d8-c2562f03af1a" />
+
+      <img width="300" alt="image" src="https://github.com/user-attachments/assets/ddc52767-d93e-4c9e-a77a-90c3b5c08fb5" />
+
+1. Locate the **Rules** section. Ensure the following items are checked.
+   - [x] Restrict deletions
+   - [x] Require a pull request before merging
+     - Required approvals: `1`
+     - [x] Require review from Code Owners (explained in next step)
+   - [x] Require status checks to pass before merging
+
+### What to learn more?
+
+Here are some useful links to learn more about some of the features you may have discovered while do this step.
 
 - [Ignoring files](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files)
 - [About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches)
