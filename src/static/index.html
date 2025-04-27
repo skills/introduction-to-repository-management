@@ -19,31 +19,29 @@
           <!-- Activities will be loaded here -->
           <p>Loading activities...</p>
         </div>
-      </section>
-
-      <section id="signup-container">
-        <h3>Sign Up for an Activity</h3>
-        <form id="signup-form">
-          <div class="form-group">
-            <label for="email">Student Email:</label>
-            <input type="email" id="email" required placeholder="your-email@mergington.edu" />
-          </div>
-          <div class="form-group">
-            <label for="activity">Select Activity:</label>
-            <select id="activity" required>
-              <option value="">-- Select an activity --</option>
-              <!-- Activity options will be loaded here -->
-            </select>
-          </div>
-          <button type="submit">Sign Up</button>
-        </form>
-        <div id="message" class="hidden"></div>
+        <div id="message" class="hidden message"></div>
       </section>
     </main>
 
     <footer>
       <p>&copy; 2023 Mergington High School</p>
     </footer>
+
+    <!-- Registration Modal -->
+    <div id="registration-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Register for <span id="modal-activity-name"></span></h3>
+        <form id="signup-form">
+          <div class="form-group">
+            <label for="email">Student Email:</label>
+            <input type="email" id="email" required placeholder="your-email@mergington.edu" />
+          </div>
+          <input type="hidden" id="activity" value="" />
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    </div>
 
     <script src="app.js"></script>
   </body>
