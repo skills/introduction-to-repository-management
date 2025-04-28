@@ -1,7 +1,6 @@
 name: Step 1
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - prepare-to-collaborate
@@ -31,6 +30,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Load Exercise Toolkit
+        uses: actions/checkout@v4
+        with:
+          repository: skills/exercise-toolkit
+          path: exercise-toolkit
+          ref: v0.3.0
 
       # START: Check practical exercise
 
@@ -66,20 +72,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get response templates
+      - name: Get Exercise Toolkit
         uses: actions/checkout@v4
         with:
           repository: skills/exercise-toolkit
           path: exercise-toolkit
           ref: v0.3.0
 
-      - name: Create comment - add step content
+      - name: Build message - add step content
+        id: build-message-add-step-content
+        uses: skills/action-text-variables@v2
+        with:
+          template-file: ${{ env.STEP_2_FILE }}
+          template-vars: |
+            login: ${{ github.actor }}
+
+      - name: Create comment - step results
         run: |
           gh issue comment "$ISSUE_URL" \
-            --body-file "$STEP_2_FILE"
+            --body "$COMMENT_BODY"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          COMMENT_BODY: ${{ steps.build-message-add-step-content.outputs.updated-text }}
+      
       - name: Create comment - watching for progress
         run: |
           gh issue comment "$ISSUE_URL" \
@@ -89,8 +104,7 @@ jobs:
 
       - name: Disable current workflow and enable next one
         run: |
-          gh workflow disable "Step 2"
-          gh workflow enable "Step 3"
-          gh workflow enable "Step 3b"
+          gh workflow disable "Step 1" || true
+          gh workflow enable "Step 2" || true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
