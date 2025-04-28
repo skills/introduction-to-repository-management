@@ -91,7 +91,7 @@ jobs:
           template-file: exercise-toolkit/markdown-templates/step-feedback/step-results.md
           template-vars: >
             {
-              "step_number": 5,
+              "step_number": 4,
               "passed": ${{ steps.check-all-results.outputs.result }},
               "results_table": [
                   ${{ steps.check-security-policy.outputs.result }}
