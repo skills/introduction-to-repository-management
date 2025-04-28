@@ -57,14 +57,6 @@ Now let's add some protections so that no one accidentally breaks the club regis
      - [x] Require review from Code Owners (explained in next step)
    - [x] Require status checks to pass before merging
 
-### What to learn more?
-
-Here are some useful links to learn more about some of the features you may have discovered while do this step.
-
-- [Ignoring files](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files)
-- [About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches)
-- [Managing a branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule)
-
 ## ⌨️ Activity: Create a `.gitignore` file
 
 Let's start by making sure we don't accidentally commit files:
