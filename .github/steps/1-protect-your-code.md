@@ -32,23 +32,23 @@ Now let's add some protections so that no one accidentally breaks the club regis
 
 1. Click the **New ruleset** dropdown and select **New branch ruleset**.
 
-   <img width="350" alt="image" src="https://github.com/user-attachments/assets/1e9fd519-1421-4d6b-b654-a3fe53a8fb75" />
+   <img width="250" alt="image" src="https://github.com/user-attachments/assets/1e9fd519-1421-4d6b-b654-a3fe53a8fb75" />
 
 1. Set the **Ruleset Name** as `Protect main` and change the **Enforcement status** to `Active`.
 
-   <img width="350" alt="image" src="https://github.com/user-attachments/assets/ce30fd34-39b5-4e22-b348-4af61fd05cd1" />
+   <img width="250" alt="image" src="https://github.com/user-attachments/assets/ce30fd34-39b5-4e22-b348-4af61fd05cd1" />
 
 1. Locate the the **Targets** section. Use the **Add target** dropdown to add 2 entries:
 
    1. Add the **Include default branch** option to ensure protections aren't bypassed by switching the default branch.
 
-      <img width="300" alt="image" src="https://github.com/user-attachments/assets/217263cc-d5c2-4ac0-b03c-a72494e5c812" />
+      <img width="250" alt="image" src="https://github.com/user-attachments/assets/217263cc-d5c2-4ac0-b03c-a72494e5c812" />
 
    1. Use the **include by pattern** option and enter the pattern `main`.
 
-      <img width="300" alt="image" src="https://github.com/user-attachments/assets/47a835de-62dc-4f34-96d8-c2562f03af1a" />
+      <img width="250" alt="image" src="https://github.com/user-attachments/assets/47a835de-62dc-4f34-96d8-c2562f03af1a" />
 
-      <img width="300" alt="image" src="https://github.com/user-attachments/assets/ddc52767-d93e-4c9e-a77a-90c3b5c08fb5" />
+      <img width="250" alt="image" src="https://github.com/user-attachments/assets/ddc52767-d93e-4c9e-a77a-90c3b5c08fb5" />
 
 1. Locate the **Rules** section. Ensure the following items are checked.
    - [x] Restrict deletions
@@ -75,7 +75,7 @@ Let's start by making sure we don't accidentally commit files:
 
 1. Enter the file name `.gitignore` and copy following example content into it.
 
-   <img width="300" alt="preview of new file" src="https://github.com/user-attachments/assets/580d1a63-a264-4d44-8901-50ad708b8822"/>
+   <img width="350" alt="preview of new file" src="https://github.com/user-attachments/assets/580d1a63-a264-4d44-8901-50ad708b8822"/>
 
    ```gitignore
    # Python backend for club management
