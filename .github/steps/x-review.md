@@ -1,43 +1,35 @@
-# 🎓 Congratulations!
+## Review
 
-You've successfully completed the Introduction to Repository Management exercise!
+_Congratulations, you've completed this exercise! You're all set for an awesome time collaborating with your fellow teachers!_
 
-## 🏫 What you've accomplished at Mergington High
+<img src="https://octodex.github.com/images/jetpacktocat.png" alt=celebrate width=150 align=right>
 
-You've helped transform the extracurricular activities website from a simple chess club signup form into a robust platform that's ready for school-wide collaboration. Let's review what you've learned:
+You've successfully prepared Mergington High's extracurricular activities website for healthy and safe collaboration. Make sure you let the principal know so he can brag to the IT department about your proactive efforts!
 
-### Step 1: Added basic repository protection
+Here is a snippet of something you can share:
 
-- Created a `.gitignore` file to keep sensitive files out of your repository
-- Set up branch protections to prevent accidental changes to the main branch
+- Protected our code from accidental mistakes with `.gitignore` and branch protections.
+- Set clear guidelines for teacher contributions with `CONTRIBUTING.md` and `CODEOWNERS`.
+- Established community standards with a Code of Conduct and structured issue templates.
+- Prepared for the future security challenges by enabling automated scanning and providing safe submission procedures.
 
-### Step 2: Prepared to collaborate
+### What's next?
 
-- Created a `CONTRIBUTING.md` guide to help Ms. Rodriguez and Mr. Chen contribute effectively
-- Established code ownership with `CODEOWNERS` to ensure proper review of critical code
+This exercise was meant to introduce you to many of the different areas of managing a repository. However, there is still more to learn!
 
-### Step 3: Fostered healthy growth
+Here are some additional exercises for a deeper dive:
 
-- Added a Code of Conduct for your growing team of teacher-contributors
-- Created standardized issue templates for bug reports and feature requests
-- Established a security policy to protect sensitive student information
+- [Skills: Secure your repository supply chain](https://github.com/skills/secure-repository-supply-chain)
+- [Skills: Introduction to CodeQL](https://github.com/skills/introduction-to-codeql)
+- [Skills: Introduction to Secret Scanning](https://github.com/skills/introduction-to-secret-scanning)
 
-### Step 4: Prepared for the inevitable
+Here are some useful references from the [GitHub Docs](https://docs.github.com/en):
 
-- Set up Dependabot to automatically check for vulnerable dependencies
-- Configured CodeQL scanning to identify security issues in your Python code
-- Created a pull request workflow for security-related changes
-
-## 🚀 What's next?
-
-With these skills, you're now ready to manage larger collaborative projects, not just at Mergington High but in any organization. Consider exploring:
-
-- **GitHub Actions** to automate more of your workflows
-- **Advanced security features** like secret scanning and dependency review
-- **Project management tools** to coordinate work across multiple teachers and clubs
-
-Principal Martinez will be proud! The district IT security team will be impressed with your proactive approach, and your fellow teachers can now safely contribute their club features to the website.
-
-Thanks for completing this exercise! Feel free to revisit any step if you'd like to review the concepts. Your repository can now serve as a reference for future projects.
-
-Happy coding! 📚✨
+- [How to ignore files](https://docs.github.com/en/get-started/git-basics/ignoring-files)
+- [Template gitignore files](https://github.com/github/gitignore)
+- [Creating rulesets for a repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository#using-fnmatch-syntax)
+- [About code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)
+- [Setting guidelines for contributors](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors)
+- [Add a code of conduct](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-code-of-conduct-to-your-project)
+- [Configuring default setup for code scanning](https://docs.github.com/en/code-security/code-scanning/enabling-code-scanning/configuring-default-setup-for-code-scanning)
+- [Adding a security policy](https://docs.github.com/en/code-security/getting-started/adding-a-security-policy-to-your-repository)
