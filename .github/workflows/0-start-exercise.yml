@@ -21,7 +21,7 @@ jobs:
     uses: skills/exercise-toolkit/.github/workflows/start-exercise.yml@v0.3.0
     with:
       exercise-title: "Introduction to Repository Management"
-      intro-message: "In this exercise, you'll configure your repository to be ready for collaboration. You'll learn how to protect your code, prepare for collaboration, and foster healthy growth in your projects."
+      intro-message: "In this exercise, you'll configure your repository for easier collaboration. You'll learn how to protect your code, prepare for collaboration, and foster healthy growth in your projects."
 
   post_next_step_content:
     name: Post next step content
@@ -37,8 +37,9 @@ jobs:
       - name: Get response templates
         uses: actions/checkout@v4
         with:
-          repository: skills/response-templates
-          path: skills-response-templates
+          repository: skills/exercise-toolkit
+          path: exercise-toolkit
+          ref: v0.3.0
 
       - name: Configure Git user
         run: |
@@ -47,12 +48,12 @@ jobs:
 
       - name: Build comment - add step content
         id: build-comment
-        uses: skills/action-text-variables@v1
+        uses: skills/action-text-variables@v2
         with:
           template-file: ${{ env.STEP_1_FILE }}
           template-vars: |
-            login=${{ github.actor }}
-            full_repo_name=${{ github.repository }}
+            login: ${{ github.actor }}
+            full_repo_name: ${{ github.repository }}
 
       - name: Create comment - add step content
         run: |
@@ -65,7 +66,7 @@ jobs:
       - name: Create comment - watching for progress
         run: |
           gh issue comment "$ISSUE_URL" \
-            --body-file "skills-response-templates/step-feedback/watching-for-progress.md"
+            --body-file "exercise-toolkit/markdown-templates/step-feedback/watching-for-progress.md"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
