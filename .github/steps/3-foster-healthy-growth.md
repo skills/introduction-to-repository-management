@@ -105,7 +105,7 @@ Now let's create templates so other teachers can report bugs or request features
 
 1. Click the **Set up templates** button to enter the issue templates editor.
 
-   <img width="400" alt="image" src="https://github.com/user-attachments/assets/a4d0947b-af11-4187-b12e-b60def929c11" />
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/a4d0947b-af11-4187-b12e-b60def929c11" />
 
 1. Click the **Add template** dropdown and select **Bug report**.
 
