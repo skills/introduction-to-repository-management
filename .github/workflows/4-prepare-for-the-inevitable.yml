@@ -5,6 +5,7 @@ on:
     branches:
       - prepare-to-collaborate
     paths:
+      - ".github/dependabot.yml"
       - "SECURITY.md"
 
 permissions:
@@ -50,6 +51,28 @@ jobs:
 
       # START: Check practical exercise
 
+      - name: Check for Dependabot config
+        id: check-dependabot-config
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            // Result object to store the message
+            let result = {
+              name: 'dependabot.yml',
+              passed: true,
+              message: ''
+            }
+
+            // Check that file exists
+            if (!fs.existsSync('.github/dependabot.yml')) {
+              result.passed = false;
+              result.message = 'File is missing.';
+            }
+
+            return result;
+
       - name: Check for Security Policy
         id: check-security-policy
         uses: actions/github-script@v7
@@ -78,13 +101,15 @@ jobs:
         with:
           script: |
             const checks = [
-              JSON.parse(process.env['check1'])
+              JSON.parse(process.env['check1']),
+              JSON.parse(process.env['check2'])
             ];
 
             const result = checks.every(check => check.passed);
             return result
         env:
-          check1: ${{ steps.check-security-policy.outputs.result }}
+          check1: ${{ steps.check-dependabot-config.outputs.result }}
+          check2: ${{ steps.check-security-policy.outputs.result }}
 
       - name: Build message - step results
         id: build-message-step-results
@@ -96,6 +121,7 @@ jobs:
               "step_number": 4,
               "passed": ${{ steps.check-all-results.outputs.result }},
               "results_table": [
+                  ${{ steps.check-dependabot-config.outputs.result }},
                   ${{ steps.check-security-policy.outputs.result }}
                 ]
             }

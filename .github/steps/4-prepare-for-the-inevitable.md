@@ -29,13 +29,21 @@ Let's configure Dependabot to use default settings and automatically combine fix
    - **Dependabot alerts**: `enabled`
    - **Dependabot security updates**: `enabled`
    - **Grouped security updates**: `enabled`
-   - **Dependabot version updates**: `enabled`
-   - **Dependabot on Actions runners**: `disabled`
-   - **Dependabot on self-hosted runners**: `disabled`
+   - **Dependabot on Actions runners**: `enabled`
 
-1. Select "Enable Dependabot alerts" to activate vulnerability scanning
+1. Find **Dependabot version updates** and click the **Enable** button. This will open an editor to save the settings.
 
-1. Click "Enable" to allow GitHub to automatically create security update pull requests
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/a4d7ae19-0439-4b78-bcbf-9fce5c5410ff" />
+
+1. In the left files list, at the top, change the branch to `prepare-to-collaborate`. Remember, our ruleset won't let us directly change files on `main`.
+
+   <img width="500" alt="image" src="https://github.com/user-attachments/assets/074db7d4-6088-4c5e-9a8b-158b651b345e" />
+
+1. Set the `package-ecosytem` to `pip` so Dependabot will automatically monitor our Python requirements.
+
+   <img width="500" alt="image" src="https://github.com/user-attachments/assets/0bc90e67-4b71-4780-8272-20dc0fff5c4c" />
+
+1. In the top right, use the **Commit changes...** button to save your changes.
 
 ## ⌨️ Activity: Detect dangerous patterns with code scanning
 
@@ -55,6 +63,8 @@ None of us at the high school are professional software developers. Let's enable
    <img width="350" alt="image" src="https://github.com/user-attachments/assets/30e90cb2-e6f9-4173-8522-18193fef0b81" />
 
 1. Below the **Tools** section. Verify **Copilot Autofix** is set to `On`.
+
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/b9d57e7a-f392-4c51-b137-f205a77adb79" />
 
 ## ⌨️ Activity: Provide a safe path for security findings
 
@@ -77,7 +87,8 @@ Now that the automated options are ready, let's create a guide for real-life hum
 
    ## Reporting a Vulnerability
 
-   At Mergington High, we take the security of our Extra-Curricular Activities website seriously, especially since it contains student information. If you discover a security vulnerability, please follow these steps:
+   At Mergington High, we take the security of our Extra-Curricular Activities website seriously, especially
+   since it contains student information. If you discover a security vulnerability, please follow these steps:
 
    1. **Do not** disclose the vulnerability publicly or to other teachers/students
    2. Email the IT Club faculty advisor at techsupport@mergingtonhigh.example.edu with details about the vulnerability
@@ -96,7 +107,8 @@ Now that the automated options are ready, let's create a guide for real-life hum
 
    ## Thank You
 
-   Your help in keeping our school's digital resources secure is greatly appreciated! Responsible disclosure of security vulnerabilities helps protect our entire school community.
+   Your help in keeping our school's digital resources secure is greatly appreciated!
+   Responsible disclosure of security vulnerabilities helps protect our entire school community.
    ```
 
 1. In the top right, use the **Commit changes...** button to save your changes.
