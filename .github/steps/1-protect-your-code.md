@@ -29,8 +29,7 @@ When more teachers start helping with the Mergington High activities website, it
 
 In other exercise, we have been developing the Extracurricular activities website. You can follow these steps to start up the development environment and try it out.
 
-> [!IMPORTANT]
-> Opening a development environment and running the application is not necessary to complete this exercise. You can skip this activity if desired.
+> ! **Important:** Opening a development environment and running the application is not necessary to complete this exercise. You can skip this activity if desired.
 
 1. Right-click the below button to open the **Create Codespace** page in a new tab. Use the default configuration.
 

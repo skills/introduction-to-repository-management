@@ -125,7 +125,7 @@ Now let's create templates so other teachers can report bugs or request features
 
    <img width="350" alt="image" src="https://github.com/user-attachments/assets/2ecc056d-924c-4e9e-9cac-8e255a7a7ecd" />
 
-1. With our templates prepared, let's commit them. In the top right, click the **Propose changes** button. Enter a description and set the branch to`add-issue-templates`, then click **Commit changes**.
+1. With our templates prepared, let's commit them. In the top right, click the **Propose changes** button. Enter a description and set the branch to `add-issue-templates`, then click **Commit changes**.
 
    <img width="350" alt="image" src="https://github.com/user-attachments/assets/8d21d225-1798-4da2-9b93-dc337a34047c" />
 
