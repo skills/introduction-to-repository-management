@@ -102,5 +102,3 @@ Now that the automated options are ready, let's create a guide for real-life hum
 1. In the top right, use the **Commit changes...** button to save your changes.
 
 1. With the files committed, wait a moment for Mona to check your work, provide feedback, and share the next lesson.
-
-## What's next?
