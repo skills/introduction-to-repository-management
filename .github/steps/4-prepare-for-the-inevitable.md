@@ -1,58 +1,76 @@
 # Step 4: Prepare for the inevitable
 
-_A week after implementing all your collaboration guidelines, you arrive at Mergington High to find Principal Martinez waiting for you outside the computer lab. "Good news! The district IT security team will be conducting an audit next month. Since your extracurricular activities website has become so important, they'll be checking it too!"_ 😱
+As you settle into the teachers' lounge with your coffee, you realize something: With more and more teachers contributing to the code, it's only a matter of time before security vulnerabilities creep in. 😱
 
-_As you settle into the teachers' lounge with your coffee, you realize this is actually a perfect opportunity. With so many teachers now contributing to the code, it's only a matter of time before security vulnerabilities creep in. Better to be proactive than reactive!_
+Every codebase, no matter how well-maintained, will eventually face security challenges. Let's try to proactively prepare for that day by configuring a few tools GitHub offers:
 
-## Theory
+1. **Dependabot** - Track and create alerts for vulnerabilities found in upstream code like our python and javascript libraries.
 
-Every codebase, no matter how well-maintained, will eventually face security challenges:
+1. **Code Scanning** - Identify dangerous coding patterns that can cause vulnerabilities.
 
-1. **Dependencies** - The Python packages your activities website relies on get regular security updates. Without automating these updates, vulnerabilities could expose student data.
+1. **Security Policy** - A clear policy helps users know how to report security vulnerabilities responsibly. This prevents sensitive issues from being publicly disclosed before they're fixed.
 
-2. **Automated Scanning** - Having GitHub automatically scan your code for common security issues helps catch mistakes before they affect the school website.
+> [!NOTE]
+> This is just a quick setup guide. For a more detailed setup of each service, we recommend the related GitHub Skills exercises and/or GitHub documentation.
 
-3. **Security Policy** - A clear policy helps teachers know how to report security vulnerabilities responsibly. This prevents sensitive issues from being publicly disclosed before they're fixed.
+## ⌨️ Activity: Automate security updates with Dependabot
 
-> ❕ **Important:** Automated tools can help, but they're just one layer of security. Your team's security awareness and practices are equally important!
+Let's configure Dependabot to use default settings and automatically combine fixes for open alerts, and create pull requests. This will allow us to stay up to date with very little overhead! Nice!
 
-## Activity 1: Enable Dependabot security updates
+> [!TIP]
+> For a deeper dive, check out the [Secure Repository Supply Chain](https://github.com/skills/secure-repository-supply-chain) Skills exercise!
 
-Let's enable GitHub's built-in security features to automatically monitor dependencies in your school website:
+1. In the top navigation, select the **Settings** tab.
 
-1. Create a new branch called `add-security-features` from `main`
-2. Navigate to the Security tab in your repository
-3. Select "Enable Dependabot alerts" to activate vulnerability scanning
-4. Click "Enable" to allow GitHub to automatically create security update pull requests
+1. In the left navigation, select **Code Security**.
 
-This will help protect your application by:
+1. Find the **Dependabot** section. Verify or change the settings to match the following:
 
-- Alerting you when vulnerabilities are found in dependencies
-- Creating pull requests to update vulnerable dependencies
-- Helping you stay ahead of security issues that could affect student data
+   - **Dependabot alerts**: `enabled`
+   - **Dependabot security updates**: `enabled`
+   - **Grouped security updates**: `enabled`
+   - **Dependabot version updates**: `enabled`
+   - **Dependabot on Actions runners**: `disabled`
+   - **Dependabot on self-hosted runners**: `disabled`
 
-> 💡 **Tip:** For a deeper dive into securing your repository's supply chain, check out the [Secure Repository Supply Chain](https://github.com/skills/secure-repository-supply-chain) Skills exercise after completing this one!
+1. Select "Enable Dependabot alerts" to activate vulnerability scanning
 
-## Activity 2: Enable code scanning
+1. Click "Enable" to allow GitHub to automatically create security update pull requests
 
-Now let's enable GitHub's code scanning to automatically detect security vulnerabilities in your Python code:
+## ⌨️ Activity: Detect dangerous patterns with code scanning
 
-1. In your `add-security-features` branch, navigate to the Security tab
-2. Click on "Code scanning" in the left sidebar
-3. Select "Set up code scanning"
-4. Choose "CodeQL Analysis" from the options
-5. Click "Enable CodeQL"
+None of us at the high school are professional software developers. Let's enable code scanning to alert us if we are potentially doing something unsafe. And, let's configure GitHub Copilot to create pull requests with solutions.
 
-This will automatically set up security scanning for your Python code, helping you identify potential security issues before they affect the Mergington High activities website.
+> [!TIP]
+> Want to learn more about code scanning and writing custom queries? Check out the [Introduction to CodeQL](https://github.com/skills/introduction-to-codeql) Skills exercise after you finish this one!
 
-> 💡 **Tip:** Want to learn more about code scanning and writing custom queries? Check out the [Introduction to CodeQL](https://github.com/skills/introduction-to-codeql) Skills exercise after you finish this one!
+1. If necessary, return to the **Code Security** page in your repository settings.
 
-## Activity 3: Create a security policy
+1. Find the **Code scanning** section. Click the **Set up** button and select the **Default** option to open a configuration panel.
 
-Finally, let's create a clear security policy to guide teachers on how to report security vulnerabilities responsibly:
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/5ba119da-1fa2-4e16-b86c-05475e949f73" />
 
-1. In your `add-security-features` branch, create a new file called `SECURITY.md` at the root of your repository
-2. Add the following content:
+1. Click the **Enable CodeQL** button to accept the default configuration.
+
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/30e90cb2-e6f9-4173-8522-18193fef0b81" />
+
+1. Below the **Tools** section. Verify **Copilot Autofix** is set to `On`.
+
+## ⌨️ Activity: Provide a safe path for security findings
+
+Now that the automated options are ready, let's create a guide for real-life humans to report any security vulnerabilities they find in a safe way.
+
+1. In your repository, navigate back to the **Code** tab.
+
+1. Ensure you you are on the `prepare-to-collaborate` branch at the root directory.
+
+1. Above the list of files, click the **Add file** dropdown and select **Create new file**.
+
+   <img width="300" alt="New file button" src="https://github.com/user-attachments/assets/8f3f8da8-1471-485a-9df5-8c03ecba2d8e"/>
+
+1. Set the file name as `SECURITY.md`.
+
+1. Add the following content:
 
    ```markdown
    # Mergington High School Security Policy
@@ -81,32 +99,8 @@ Finally, let's create a clear security policy to guide teachers on how to report
    Your help in keeping our school's digital resources secure is greatly appreciated! Responsible disclosure of security vulnerabilities helps protect our entire school community.
    ```
 
-3. Commit your changes to the `add-security-features` branch
-4. Create a pull request from `add-security-features` to `main`
-5. Give it a title like "Add automated security features for district audit"
-6. In the description, explain:
-   - How you've enabled Dependabot alerts and security updates
-   - How CodeQL scanning will help protect student data
-   - That these changes will help prepare for the upcoming district security audit
-7. Merge the pull request to finish this step
+1. In the top right, use the **Commit changes...** button to save your changes.
 
-When you merge this pull request, GitHub will immediately start scanning your code and dependencies, helping you prepare for the upcoming audit!
+1. With the files committed, wait a moment for Mona to check your work, provide feedback, and share the next lesson.
 
 ## What's next?
-
-Congratulations! You've successfully prepared Mergington High's extracurricular activities website for safe collaboration. You've:
-
-1. Protected your code from accidental mistakes with `.gitignore` and branch protections
-2. Set clear guidelines for teacher contributions with `CONTRIBUTING.md` and `CODEOWNERS`
-3. Established community standards with a Code of Conduct and structured issue templates
-4. Prepared for the inevitable security challenges with automated scanning and updates
-
-Principal Martinez will be thrilled to show the district IT security team all the measures you've put in place to keep student data safe while enabling teachers to contribute new features for their clubs!
-
-### References
-
-- [About Dependabot security updates](https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/about-dependabot-security-updates)
-- [About code scanning with CodeQL](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql)
-- [Adding a security policy to your repository](https://docs.github.com/en/code-security/getting-started/adding-a-security-policy-to-your-repository)
-- [Secure Repository Supply Chain Skills exercise](https://github.com/skills/secure-repository-supply-chain)
-- [Introduction to CodeQL Skills exercise](https://github.com/skills/introduction-to-codeql)
