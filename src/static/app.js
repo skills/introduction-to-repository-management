@@ -51,6 +51,41 @@ document.addEventListener("DOMContentLoaded", () => {
     weekend: { days: ["Saturday", "Sunday"] }, // Weekend days
   };
 
+  // Initialize filters from active elements
+  function initializeFilters() {
+    // Initialize day filter
+    const activeDayFilter = document.querySelector(".day-filter.active");
+    if (activeDayFilter) {
+      currentDay = activeDayFilter.dataset.day;
+    }
+
+    // Initialize time filter
+    currentTimeRange = timeFilter.value;
+  }
+
+  // Function to set day filter
+  function setDayFilter(day) {
+    currentDay = day;
+
+    // Update active class
+    dayFilters.forEach((btn) => {
+      if (btn.dataset.day === day) {
+        btn.classList.add("active");
+      } else {
+        btn.classList.remove("active");
+      }
+    });
+
+    fetchActivities();
+  }
+
+  // Function to set time range filter
+  function setTimeRangeFilter(timeRange) {
+    currentTimeRange = timeRange;
+    timeFilter.value = timeRange;
+    fetchActivities();
+  }
+
   // Check if user is already logged in (from localStorage)
   function checkAuthentication() {
     const savedUser = localStorage.getItem("currentUser");
@@ -803,5 +838,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize app
   checkAuthentication();
+  initializeFilters();
   fetchActivities();
 });
