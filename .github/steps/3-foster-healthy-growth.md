@@ -1,33 +1,41 @@
 # Step 3: Foster healthy growth
 
-_The word has spread throughout Mergington High! After the last IT Club meeting, even more teachers want to join your project. Ms. Williams from the Drama Club is planning a ticket reservation system, Coach Taylor wants to track sports team attendance, and Mr. Garcia from the Science Club needs a way to organize the upcoming Science Fair participants._ 🎭 🏀 🔬
+With so many eager contributors, Principal Martinez pulled you aside after morning announcements: "Your website is becoming critical school infrastructure! We need to make sure it grows in a healthy way as more teachers join. Can you add some guidelines to keep everything organized?"
 
-_With so many eager contributors, Principal Martinez pulled you aside after morning announcements: "Your website is becoming critical school infrastructure! We need to make sure it grows in a healthy way as more teachers join. Can you add some guidelines to keep everything organized?"_
+As your extra-curricular activities website grows, you'll need more than just technical protections and contribution guides. You'll also have to encourage healthy and constructive communication.
 
-## Theory
+Let's look at a couple ways to do that:
 
-As your extra-curricular activities website grows, you'll need more than just technical protections and contribution guides. Here are three important elements for fostering a healthy project:
+1. **Code of Conduct** - This document sets expectations for how community members should interact. Think of it like the Student Handbook at Mergington High - it outlines respectful behavior, how to report non-technical problems, and consequences for violations.
 
-1. **Code of Conduct** - This document sets expectations for how community members should interact. Think of it like the Student Handbook at Mergington High - it outlines respectful behavior, how to report problems, and consequences for violations.
+2. **Issue Templates** - These provide structure when someone reports a problem or suggests a new feature. They can help the community effectively communicate their needs for new features and provide enough information to solve bugs.
 
-2. **Issue Templates** - These provide structure when someone reports a problem or suggests a new feature. Just like how the school office has different forms for different requests (absence notes, field trip permission slips, etc.), issue templates guide contributors to provide the right information.
+## ⌨️ Activity: Set expectations with a Code of Conduct
 
-> ❕ **Important:** These files don't just help new contributors; they protect your project and its users (in this case, the students and teachers at Mergington High)!
+Let's start by establishing some community guidelines for your growing team of teacher-contributors.
 
-## Activity 1: Create a Code of Conduct
+> [!TIP]
+> The [Contributor Covenant](https://www.contributor-covenant.org/) is a popular code of conduct used by many projects.
 
-Let's start by establishing some community guidelines for your growing team of teacher-contributors:
+1. Ensure you you are on the `prepare-to-collaborate` branch at the root directory.
 
-1. Create a new branch called `foster-healthy-growth` from `main`
-2. Create a new file called `CODE_OF_CONDUCT.md` at the root of your repository
-3. Add the following content:
+1. Above the list of files, click the **Add file** dropdown and select **Create new file**.
+
+   <img width="300" alt="New file button" src="https://github.com/user-attachments/assets/8f3f8da8-1471-485a-9df5-8c03ecba2d8e"/>
+
+1. Set the file name as `CODE_OF_CONDUCT.md`.
+
+1. Add the following content:
 
    ```markdown
    # Mergington High School Code of Conduct
 
    ## Our Pledge
 
-   In the interest of fostering an open and welcoming environment for our school community, we as contributors and maintainers pledge to make participation in the Extra-Curricular Activities project a respectful and harassment-free experience for everyone.
+   In the interest of fostering an open and welcoming environment for
+   our school community, we as contributors and maintainers pledge to
+   make participation in the Extra-Curricular Activities project a
+   respectful and harassment-free experience for everyone.
 
    ## Our Standards
 
@@ -49,108 +57,79 @@ Let's start by establishing some community guidelines for your growing team of t
 
    ## Responsibilities
 
-   Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
+   Project maintainers are responsible for clarifying the standards of
+   acceptable behavior and are expected to take appropriate and fair
+   corrective action in response to any instances of unacceptable behavior.
 
-   Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, issues, and other contributions that are not aligned to this Code of Conduct.
+   Project maintainers have the right and responsibility to remove, edit,
+   or reject comments, commits, code, issues, and other contributions that
+   are not aligned to this Code of Conduct.
 
    ## Scope
 
-   This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or the school. Examples of representing the project include using an official project email address, posting via an official social media account, or acting as an appointed representative at an online or offline event.
+   This Code of Conduct applies both within project spaces and in public spaces
+   when an individual is representing the project or the school. Examples of
+   representing the project include using an official project email address,
+   posting via an official social media account, or acting as an appointed
+   representative at an online or offline event.
 
    ## Enforcement
 
-   Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the IT Club faculty advisor. All complaints will be reviewed and investigated promptly and fairly.
+   Instances of abusive, harassing, or otherwise unacceptable behavior may be
+   reported to the IT Club faculty advisor. All complaints will be reviewed and
+   investigated promptly and fairly.
 
-   Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by the school administration.
+   Project maintainers who do not follow or enforce the Code of Conduct in good faith may
+   face temporary or permanent repercussions as determined by the school administration.
 
    ## Attribution
 
-   This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 1.4, available at [https://www.contributor-covenant.org/version/1/4/code-of-conduct.html](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html)
+   This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org),
+   version 1.4, available at [https://www.contributor-covenant.org/version/1/4/code-of-conduct.html](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html)
    ```
 
-## Activity 2: Create Issue Templates
+1. In the top right, use the **Commit changes...** button to save your changes.
 
-Now let's create templates so other teachers can report bugs or request features in a standardized way:
+## ⌨️ Activity: Communicate easier with issue templates
 
-1. In your `foster-healthy-growth` branch, create a new directory at `.github/ISSUE_TEMPLATE`
-2. In that directory, create a file called `bug_report.md` with:
+Now let's create templates so other teachers can report bugs or request features in a standardized way.
 
-   ```markdown
-   ---
-   name: Bug Report
-   about: Create a report to help us improve the Extra-Curricular Activities website
-   title: "[BUG] "
-   labels: bug
-   assignees: ""
-   ---
+> [!TIP]
+> You might consider trying the public preview for [issue forms](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-issue-forms), which provide a friendlier user experience when creating issues.
 
-   **Describe the bug**
-   A clear and concise description of what the bug is.
+1. In the top navigation, select the **Settings** tab.
 
-   **To Reproduce**
-   Steps to reproduce the behavior:
+1. Find the **Features** section and verify **Issues** is enabled.
 
-   1. Go to '...'
-   2. Click on '...'
-   3. Scroll down to '...'
-   4. See error
+   <img width="350" alt="" src="https://github.com/user-attachments/assets/d0fbd22c-89d5-42eb-b976-485b8ac0521d" />
 
-   **Expected behavior**
-   A clear and concise description of what you expected to happen.
+1. Click the **Set up templates** button to enter the issue templates editor.
 
-   **Screenshots**
-   If applicable, add screenshots to help explain your problem.
+   <img width="400" alt="image" src="https://github.com/user-attachments/assets/a4d0947b-af11-4187-b12e-b60def929c11" />
 
-   **Device Information (please complete the following information):**
+1. Click the **Add template** dropdown and select **Bug report**.
 
-   - Device: [e.g. School Computer, Personal Laptop, Tablet]
-   - Browser: [e.g. Chrome, Safari, Firefox]
-   - Operating System: [e.g. Windows, macOS, iOS]
+   <img width="350" alt="" src="https://github.com/user-attachments/assets/085f33d7-e3f3-4c0a-a521-568b72759710" />
 
-   **Additional context**
+1. Click the **Preview and edit** button to show the current template. Click the **Edit icon** (pencil) to make the fields editable.
 
-   - Which club/activity were you working with?
-   - Were any students affected by this issue?
-   - Is this blocking an upcoming event?
-   ```
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/535dcb30-2bae-4f4e-a162-08871686d138" /><br/>
 
-3. In the same directory, create a file called `feature_request.md` with:
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/b3bf2629-cfd2-4e3f-b25d-ad79b620d192" /><br/>
 
-   ```markdown
-   ---
-   name: Feature Request
-   about: Suggest a new feature for the Extra-Curricular Activities website
-   title: "[FEATURE] "
-   labels: enhancement
-   assignees: ""
-   ---
+   <img width="700" alt="image" src="https://github.com/user-attachments/assets/c0e4683b-5cca-48c3-9067-c110d0d01479" />
 
-   **Is your feature request related to a problem? Please describe.**
-   A clear and concise description of what the problem is. Ex. My club needs a way to [...]
+1. (Optional) Let's keep it simple for our students and fellow teachers. Remove the sections about Desktop and Smartphone details.
 
-   **Describe the solution you'd like**
-   A clear and concise description of what you want to happen.
+1. Repeat the above steps for the "Feature request" template.
 
-   **Describe alternatives you've considered**
-   A clear and concise description of any alternative solutions or features you've considered.
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/2ecc056d-924c-4e9e-9cac-8e255a7a7ecd" />
 
-   **Which club or activity would benefit from this feature?**
-   Let us know which club(s) or school activities need this feature.
+1. With our templates prepared, let's commit them. In the top right, click the **Propose changes** button. Enter a description and set the branch to`add-issue-templates`, then click **Commit changes**.
 
-   **What is the timeline for this feature?**
-   Is this needed for an upcoming event? By when?
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/8d21d225-1798-4da2-9b93-dc337a34047c" />
 
-   **Additional context**
-   Add any other context or screenshots about the feature request here.
-   ```
+1. With the files committed, wait a moment for Mona to check your work, provide feedback, and share the next lesson.
 
-When you've completed these activities, commit your changes to the `foster-healthy-growth` branch and create a pull request. These files will provide a strong foundation for healthy collaboration as more teachers join your project!
-
-## What's next?
-
-With these community guidelines and issue templates in place, Mergington High's extra-curricular activities website is now ready to welcome a larger group of teacher-contributors. In the next step, we'll explore how to prepare for security challenges and establish a process for managing security updates! 🚀
-
-### References
-
-- [Adding a code of conduct to your project](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-code-of-conduct-to-your-project)
-- [Configuring issue templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository)
+> [!TIP]
+> Did you notice that you are working in parallel on 2 branches now? That's exactly what working with multiple collaborators is like.
