@@ -31,7 +31,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get response templates
+      - name: Get Exercise Toolkit
         uses: actions/checkout@v4
         with:
           repository: skills/exercise-toolkit
@@ -51,24 +51,38 @@ jobs:
       - name: Check for Security Policy
         id: check-security-policy
         uses: actions/github-script@v7
-        continue-on-error: true
         with:
           script: |
             const fs = require('fs');
 
             // Result object to store the message
             let result = {
-              passed: true
-              description: ''
+              name: 'SECURITY.md',
+              passed: true,
+              message: ''
             }
 
             // Check that file exists
             if (!fs.existsSync('SECURITY.md')) {
               result.passed = false;
-              result.description = 'File is missing.';
+              result.message = 'File is missing.';
             }
 
-            core.setOutput('result', result);
+            return result;
+
+      - name: Check all results
+        id: check-all-results
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const checks = [
+              JSON.parse(process.env['check1'])
+            ];
+
+            const result = checks.every(check => check.passed);
+            return result
+        env:
+          check1: ${{ steps.check-security-policy.outputs.result }}
 
       - name: Build message - step results
         id: build-message-step-results
@@ -77,8 +91,8 @@ jobs:
           template-file: exercise-toolkit/markdown-templates/step-feedback/step-results.md
           template-vars: >
             {
-              "step_number": 4,
-              "passed": ${{ steps.check-security-policy.outcome == 'success' }},
+              "step_number": 5,
+              "passed": ${{ steps.check-all-results.outputs.result }},
               "results_table": [
                   ${{ steps.check-security-policy.outputs.result }}
                 ]
@@ -94,7 +108,7 @@ jobs:
           COMMENT_BODY: ${{ steps.build-message-step-results.outputs.updated-text }}
 
       - name: Fail job if not all checks passed
-        if: steps.check-security-policy.outcome == 'failure'
+        if: steps.check-all-results.outputs.result == 'false'
         run: exit 1
 
       # END: Check practical exercise
@@ -105,13 +119,12 @@ jobs:
         with:
           template-file: exercise-toolkit/markdown-templates/step-feedback/step-finished-prepare-next-step.md
           template-vars: |
-            next_step_number: 4
+            next_step_number: 5
 
-      - name: Update comment - step status
+      - name: Update comment - step finished
         run: |
           gh issue comment "$ISSUE_URL" \
-            --body "$ISSUE_BODY" \
-            --edit-last
+            --body "$ISSUE_BODY"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_BODY: ${{ steps.build-message-step-finish.outputs.updated-text }}
@@ -127,7 +140,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get response templates
+      - name: Get Exercise Toolkit
         uses: actions/checkout@v4
         with:
           repository: skills/exercise-toolkit
@@ -150,7 +163,7 @@ jobs:
 
       - name: Disable current workflow and enable next one
         run: |
-          gh workflow disable "Step 3"
-          gh workflow enable "Step 4"
+          gh workflow disable "Step 4" || true
+          gh workflow enable "Step 5" || true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
