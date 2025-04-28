@@ -472,6 +472,7 @@ footer {
 
 .search-box input {
   flex: 1;
+  min-width: 0; /* Add this to prevent input from overflowing */
   padding: 6px 10px;
   border: 1px solid var(--border);
   border-right: none;
@@ -488,6 +489,8 @@ footer {
 
 .search-box button {
   width: 36px;
+  height: 100%; /* Make button match input height */
+  min-height: 32px; /* Ensure minimum clickable area */
   background: var(--primary);
   color: white;
   border: none;
@@ -495,6 +498,9 @@ footer {
   cursor: pointer;
   transition: background-color 0.3s ease;
   padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-box button:hover {
