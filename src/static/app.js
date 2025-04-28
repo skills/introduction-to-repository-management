@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchButton = document.getElementById("search-button");
   const categoryFilters = document.querySelectorAll(".category-filter");
   const dayFilters = document.querySelectorAll(".day-filter");
-  const timeFilter = document.getElementById("time-filter");
+  const timeFilters = document.querySelectorAll(".time-filter");
 
   // Authentication elements
   const loginButton = document.getElementById("login-button");
@@ -60,7 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Initialize time filter
-    currentTimeRange = timeFilter.value;
+    const activeTimeFilter = document.querySelector(".time-filter.active");
+    if (activeTimeFilter) {
+      currentTimeRange = activeTimeFilter.dataset.time;
+    }
   }
 
   // Function to set day filter
@@ -82,7 +85,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to set time range filter
   function setTimeRangeFilter(timeRange) {
     currentTimeRange = timeRange;
-    timeFilter.value = timeRange;
+
+    // Update active class
+    timeFilters.forEach((btn) => {
+      if (btn.dataset.time === timeRange) {
+        btn.classList.add("active");
+      } else {
+        btn.classList.remove("active");
+      }
+    });
+
     fetchActivities();
   }
 
@@ -610,10 +622,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Add event listener to time filter dropdown
-  timeFilter.addEventListener("change", () => {
-    currentTimeRange = timeFilter.value;
-    fetchActivities();
+  // Add event listeners for time filter buttons
+  timeFilters.forEach((button) => {
+    button.addEventListener("click", () => {
+      // Update active class
+      timeFilters.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      // Update current time filter and fetch activities
+      currentTimeRange = button.dataset.time;
+      fetchActivities();
+    });
   });
 
   // Open registration modal

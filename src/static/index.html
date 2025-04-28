@@ -26,79 +26,90 @@
 
     <main>
       <section id="activities-container">
-        <!-- Search and Filter Controls -->
-        <div class="search-filter-container">
-          <div class="search-box">
-            <input
-              type="text"
-              id="activity-search"
-              placeholder="Search activities..."
-            />
-            <button id="search-button" aria-label="Search">
-              <span class="search-icon">🔍</span>
-            </button>
-          </div>
-
-          <div class="filter-container">
-            <div class="filter-label">Filter by category:</div>
-            <div class="category-filters" id="category-filters">
-              <button class="category-filter active" data-category="all">
-                All
-              </button>
-              <button class="category-filter" data-category="sports">
-                Sports
-              </button>
-              <button class="category-filter" data-category="arts">Arts</button>
-              <button class="category-filter" data-category="academic">
-                Academic
-              </button>
-              <button class="category-filter" data-category="community">
-                Community
-              </button>
-              <button class="category-filter" data-category="technology">
-                Technology
+        <div class="main-content-layout">
+          <!-- Left Sidebar for Filters -->
+          <aside class="sidebar-filters">
+            <h3>Filter Activities</h3>
+            <!-- Search Box -->
+            <div class="search-box">
+              <input
+                type="text"
+                id="activity-search"
+                placeholder="Search activities..."
+              />
+              <button id="search-button" aria-label="Search">
+                <span class="search-icon">🔍</span>
               </button>
             </div>
-          </div>
 
-          <!-- Day Filter -->
-          <div class="filter-container day-filter-container">
-            <div class="filter-label">Filter by day:</div>
-            <div class="day-filters" id="day-filters">
-              <button class="day-filter active" data-day="">All Days</button>
-              <button class="day-filter" data-day="Monday">Monday</button>
-              <button class="day-filter" data-day="Tuesday">Tuesday</button>
-              <button class="day-filter" data-day="Wednesday">Wednesday</button>
-              <button class="day-filter" data-day="Thursday">Thursday</button>
-              <button class="day-filter" data-day="Friday">Friday</button>
-              <button class="day-filter" data-day="Saturday">Saturday</button>
-              <button class="day-filter" data-day="Sunday">Sunday</button>
+            <div class="filter-container">
+              <div class="filter-label">Filter by category:</div>
+              <div class="category-filters" id="category-filters">
+                <button class="category-filter active" data-category="all">
+                  All
+                </button>
+                <button class="category-filter" data-category="sports">
+                  Sports
+                </button>
+                <button class="category-filter" data-category="arts">
+                  Arts
+                </button>
+                <button class="category-filter" data-category="academic">
+                  Academic
+                </button>
+                <button class="category-filter" data-category="community">
+                  Community
+                </button>
+                <button class="category-filter" data-category="technology">
+                  Technology
+                </button>
+              </div>
             </div>
-          </div>
 
-          <!-- Time Filter -->
-          <div class="filter-container time-filter-container">
-            <div class="filter-label">Filter by time:</div>
-            <div class="time-filters">
-              <select id="time-filter">
-                <option value="">All Times</option>
-                <option value="morning">
-                  Before School (6:00 AM - 8:00 AM)
-                </option>
-                <option value="afternoon">
-                  After School (3:00 PM - 6:00 PM)
-                </option>
-                <option value="weekend">Weekend</option>
-              </select>
+            <!-- Day Filter -->
+            <div class="filter-container day-filter-container">
+              <div class="filter-label">Filter by day:</div>
+              <div class="day-filters" id="day-filters">
+                <button class="day-filter active" data-day="">All Days</button>
+                <button class="day-filter" data-day="Monday">Monday</button>
+                <button class="day-filter" data-day="Tuesday">Tuesday</button>
+                <button class="day-filter" data-day="Wednesday">
+                  Wednesday
+                </button>
+                <button class="day-filter" data-day="Thursday">Thursday</button>
+                <button class="day-filter" data-day="Friday">Friday</button>
+                <button class="day-filter" data-day="Saturday">Saturday</button>
+                <button class="day-filter" data-day="Sunday">Sunday</button>
+              </div>
             </div>
+
+            <!-- Time Filter -->
+            <div class="filter-container time-filter-container">
+              <div class="filter-label">Filter by time:</div>
+              <div class="time-filters">
+                <button class="time-filter active" data-time="">
+                  All Times
+                </button>
+                <button class="time-filter" data-time="morning">
+                  Before School
+                </button>
+                <button class="time-filter" data-time="afternoon">
+                  After School
+                </button>
+                <button class="time-filter" data-time="weekend">Weekend</button>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Activities Content -->
+          <div class="activities-content">
+            <div id="activities-list">
+              <!-- Activities will be loaded here -->
+              <p>Loading activities...</p>
+            </div>
+            <div id="message" class="hidden message"></div>
           </div>
         </div>
-
-        <div id="activities-list">
-          <!-- Activities will be loaded here -->
-          <p>Loading activities...</p>
-        </div>
-        <div id="message" class="hidden message"></div>
       </section>
     </main>
 
