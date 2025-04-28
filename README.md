@@ -1,11 +1,11 @@
 # Introduction to Repository Management
 
-_Upgrade your existing project with supporting tools to help it sustainably grow._
+_Learn the basics of several GitHub features that can help support a collaborative, friendly, and healthy project._
 
 ## Welcome
 
 - **Who is this for**: Developers with the need to start collaborating.
-- **What you'll learn**: The different ways to protect your repository's content as more people become collaborators.
+- **What you'll learn**: The different ways to protect your repository's content as more people join as collaborators.
 - **What you'll build**: You will prepare Mergington High School's extracurricular activities website repository so additional teachers can safely collaborate.
 - **Prerequisites**:
   - Skills exercise: [Introduction to GitHub](https://github.com/skills/introduction-to-github)
@@ -19,6 +19,10 @@ In this exercise, you will:
 1. Learn the difference between collaboration in a personal repository and organization repository.
 1. Establish ground rules to promote a health collaboration environment.
 1. Establish a process for managing security updates.
+
+> [!IMPORTANT]
+> This exercise is meant to provide an overview of many GitHub features.
+> It will provide references to learn more, but not provide a deep understanding of any topic.
 
 ### How to start this exercise
 
