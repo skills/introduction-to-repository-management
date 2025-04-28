@@ -104,6 +104,10 @@ To get started, let's add some protections so that no one accidentally breaks th
 
       <img width="250" alt="image" src="https://github.com/user-attachments/assets/ddc52767-d93e-4c9e-a77a-90c3b5c08fb5" />
 
+1. Find the **Bypass list** section. Add the repository admin.
+
+   <img width="250" alt="image" src="https://github.com/user-attachments/assets/a7193e8e-a1d1-42b7-894a-1178b43f51c2" />
+
 1. Find the **Rules** section and ensure the following items are checked.
 
    - [x] Restrict deletions
