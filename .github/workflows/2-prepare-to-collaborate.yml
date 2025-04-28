@@ -1,0 +1,195 @@
+name: Step 2
+
+on:
+  push:
+    branches:
+      - prepare-to-collaborate
+    paths:
+      - "CONTRIBUTING.md"
+      - "CODEOWNERS"
+
+permissions:
+  contents: read
+  actions: write
+  issues: write
+
+env:
+  STEP_3_FILE: ".github/steps/3-foster-healthy-growth.md"
+
+jobs:
+  find_exercise:
+    name: Find Exercise Issue
+    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.3.0
+
+  check_step_work:
+    name: Check step work
+    runs-on: ubuntu-latest
+    needs: [find_exercise]
+    env:
+      ISSUE_URL: ${{ needs.find_exercise.outputs.issue-url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get Exercise Toolkit
+        uses: actions/checkout@v4
+        with:
+          repository: skills/exercise-toolkit
+          path: exercise-toolkit
+          ref: v0.3.0
+
+      - name: Update comment - checking work
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body-file exercise-toolkit/markdown-templates/step-feedback/checking-work.md \
+            --edit-last
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # START: Check practical exercise
+
+      - name: Check CONTRIBUTING.md exists
+        id: check-contributing
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            // Result object to store the message
+            let result = {
+              name: 'CONTRIBUTING.md',
+              passed: true,
+              message: ''
+            }
+
+            // Check that file exists
+            if (!fs.existsSync('CONTRIBUTING.md')) {
+              result.passed = false;
+              result.message = 'File is missing.';
+            }
+
+            return result;
+
+      - name: Check CODEOWNERS exists
+        id: check-codeowners
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            // Result object to store the message
+            let result = {
+              name: 'CODEOWNERS',
+              passed: true,
+              message: ''
+            }
+
+            // Check that file exists
+            if (!fs.existsSync('CODEOWNERS')) {
+              result.passed = false;
+              result.message = 'File is missing.';
+            }
+
+            return result;
+
+      - name: Check all results
+        id: check-all-results
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const checks = [
+              JSON.parse(process.env['check1']),
+              JSON.parse(process.env['check2']),
+            ];
+  
+            const result = checks.every(check => check.passed);
+            return result
+        env:
+          check1: ${{ steps.check-contributing.outputs.result }}
+          check2: ${{ steps.check-codeowners.outputs.result }}
+
+      - name: Build message - step results
+        id: build-message-step-results
+        uses: skills/action-text-variables@v2
+        with:
+          template-file: exercise-toolkit/markdown-templates/step-feedback/step-results.md
+          template-vars: >
+            {
+              "step_number": 3,
+              "passed": ${{ steps.check-all-results.outputs.result }},
+              "results_table": [
+                  ${{ steps.check-contributing.outputs.result }},
+                  ${{ steps.check-codeowners.outputs.result }}
+                ]
+            }
+
+      - name: Create comment - step results
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body "$COMMENT_BODY" \
+            --edit-last
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENT_BODY: ${{ steps.build-message-step-results.outputs.updated-text }}
+
+      - name: Fail job if not all checks passed
+        if: steps.check-all-results.outputs.result == 'false'
+        run: exit 1
+
+      # END: Check practical exercise
+
+      - name: Build message - step finished
+        id: build-message-step-finish
+        uses: skills/action-text-variables@v2
+        with:
+          template-file: exercise-toolkit/markdown-templates/step-feedback/step-finished-prepare-next-step.md
+          template-vars: |
+            next_step_number: 3
+
+      - name: Update comment - step finished
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body "$ISSUE_BODY"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_BODY: ${{ steps.build-message-step-finish.outputs.updated-text }}
+
+  post_next_step_content:
+    name: Post next step content
+    runs-on: ubuntu-latest
+    needs: [find_exercise, check_step_work]
+    env:
+      ISSUE_URL: ${{ needs.find_exercise.outputs.issue-url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get Exercise Toolkit
+        uses: actions/checkout@v4
+        with:
+          repository: skills/exercise-toolkit
+          path: exercise-toolkit
+          ref: v0.3.0
+
+      - name: Create comment - add step content
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body-file "$STEP_3_FILE"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create comment - watching for progress
+        run: |
+          gh issue comment "$ISSUE_URL" \
+            --body-file exercise-toolkit/markdown-templates/step-feedback/watching-for-progress.md
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Disable current workflow and enable next one
+        run: |
+          gh workflow disable "Step 2" || true
+          gh workflow enable "Step 3" || true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
