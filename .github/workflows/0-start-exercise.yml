@@ -31,10 +31,11 @@ jobs:
       ISSUE_URL: ${{ needs.start_exercise.outputs.issue-url }}
 
     steps:
+
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get response templates
+      - name: Load Exercise Toolkit
         uses: actions/checkout@v4
         with:
           repository: skills/exercise-toolkit
@@ -73,6 +74,6 @@ jobs:
       - name: Disable current workflow and enable next one
         run: |
           # gh workflow enable "Step 0" # Already disabled
-          gh workflow enable "Step 1"
+          gh workflow enable "Step 1" || true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
