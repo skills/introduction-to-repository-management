@@ -536,10 +536,16 @@ document.addEventListener("DOMContentLoaded", () => {
               (email) => `
             <li>
               ${email}
-              <span class="delete-participant tooltip" data-activity="${name}" data-email="${email}">
-                ✖
-                <span class="tooltip-text">Unregister this student</span>
-              </span>
+              ${
+                currentUser
+                  ? `
+                <span class="delete-participant tooltip" data-activity="${name}" data-email="${email}">
+                  ✖
+                  <span class="tooltip-text">Unregister this student</span>
+                </span>
+              `
+                  : ""
+              }
             </li>
           `
             )

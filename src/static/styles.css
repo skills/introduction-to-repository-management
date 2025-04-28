@@ -256,7 +256,6 @@ section h3 {
   padding-left: 0;
   margin: 0;
   max-height: 100px;
-  overflow-y: auto;
 }
 
 .participants-list li {
@@ -330,6 +329,20 @@ button {
 .tooltip:hover .tooltip-text {
   visibility: visible;
   opacity: 1;
+}
+
+/* Special positioning for delete participant tooltip */
+.delete-participant {
+  cursor: pointer;
+}
+
+.delete-participant .tooltip-text {
+  left: auto;
+  right: calc(100% + 8px);
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  white-space: nowrap;
 }
 
 /* Activity skeletons for loading state */
