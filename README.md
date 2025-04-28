@@ -22,7 +22,7 @@ In this exercise, you will:
 
 > [!IMPORTANT]
 > This exercise is meant to provide an overview of many GitHub features.
-> It will provide references to learn more, but not provide a deep understanding of any topic.
+> It will provide references to learn more but not a detailed explanation for any specific subject.
 
 ### How to start this exercise
 
