@@ -4,8 +4,6 @@ It's been a busy month at Mergington High! Your simple website for managing extr
 
 Principal Martinez was so impressed with your work that they announced at the last staff meeting that ALL clubs should start using the website. While this is exciting, you're a bit nervous - the last thing you want is an accidental change breaking the system right before the big Fall Activities Fair! 😰
 
-## Theory
-
 When more teachers start helping with the Mergington High activities website, it's important to add some safeguards. Thankfully, GitHub provides several ways to protect your repository:
 
 1. **Repository Rulesets** - These provide safeguards to limit:

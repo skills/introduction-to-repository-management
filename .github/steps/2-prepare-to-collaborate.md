@@ -7,8 +7,6 @@ Your simple school website has become quite popular! After showing it at the las
 
 While you're thrilled about their enthusiasm, you realize you need to set up some guidelines before letting them start changing code. The last thing you want is conflicting changes breaking the registration system right before spring break!
 
-## Theory
-
 Opening your project to other teachers at Mergington High means thinking about how everyone will work together without breaking each other's code. To help with collaboration, GitHub provides two special files:
 
 1. `CONTRIBUTING.md` - A "How to Help" guide. Some example content:
