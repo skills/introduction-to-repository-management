@@ -32,7 +32,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get response templates
+      - name: Get Exercise Toolkit
         uses: actions/checkout@v4
         with:
           repository: skills/exercise-toolkit
@@ -49,59 +49,75 @@ jobs:
 
       # START: Check practical exercise
 
-      - name: Check CONTRIBUTING.md was created
+      - name: Check CONTRIBUTING.md exists
         id: check-contributing
         uses: actions/github-script@v7
-        continue-on-error: true
         with:
           script: |
             const fs = require('fs');
 
             // Result object to store the message
             let result = {
-              passed: true
-              description: ''
+              name: 'CONTRIBUTING.md',
+              passed: true,
+              message: ''
             }
 
             // Check that file exists
             if (!fs.existsSync('CONTRIBUTING.md')) {
               result.passed = false;
-              result.description = 'File is missing.';
+              result.message = 'File is missing.';
             }
 
-            core.setOutput('result', result);
+            return result;
 
-      - name: Check CODEOWNERS was created
+      - name: Check CODEOWNERS exists
         id: check-codeowners
         uses: actions/github-script@v7
-        continue-on-error: true
         with:
           script: |
             const fs = require('fs');
 
             // Result object to store the message
             let result = {
-              passed: true
-              description: ''
+              name: 'CODEOWNERS',
+              passed: true,
+              message: ''
             }
 
             // Check that file exists
             if (!fs.existsSync('CODEOWNERS')) {
               result.passed = false;
-              result.description = 'File is missing.';
+              result.message = 'File is missing.';
             }
 
-            core.setOutput('result', result);
+            return result;
+
+      - name: Check all results
+        id: check-all-results
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const checks = [
+              JSON.parse(process.env['check1']),
+              JSON.parse(process.env['check2']),
+            ];
+  
+            const result = checks.every(check => check.passed);
+            return result
+        env:
+          check1: ${{ steps.check-contributing.outputs.result }}
+          check2: ${{ steps.check-codeowners.outputs.result }}
 
       - name: Build message - step results
         id: build-message-step-results
         uses: skills/action-text-variables@v2
         with:
-          template-file: exercise-toolkit/markdown-templates/step-feedback/step-results-table.md
+          template-file: exercise-toolkit/markdown-templates/step-feedback/step-results.md
           template-vars: >
             {
               "step_number": 3,
-              "passed": ${{ steps.check-contributing.outcome == 'success' && steps.check-codeowners.outcome == 'success' }},
+              "passed": ${{ steps.check-all-results.outputs.result }},
               "results_table": [
                   ${{ steps.check-contributing.outputs.result }},
                   ${{ steps.check-codeowners.outputs.result }}
@@ -118,7 +134,7 @@ jobs:
           COMMENT_BODY: ${{ steps.build-message-step-results.outputs.updated-text }}
 
       - name: Fail job if not all checks passed
-        if: steps.check-contributing.outcome == 'failure' || steps.check-codeowners.outcome == 'failure'
+        if: steps.check-all-results.outputs.result == 'false'
         run: exit 1
 
       # END: Check practical exercise
@@ -150,7 +166,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get response templates
+      - name: Get Exercise Toolkit
         uses: actions/checkout@v4
         with:
           repository: skills/exercise-toolkit
