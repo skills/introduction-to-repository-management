@@ -24,7 +24,9 @@ When more teachers start helping with the Mergington High activities website, it
 
 ## ⌨️ Activity: Add a branch ruleset
 
-Now let's add some protections so that no one accidentally breaks the club registration system:
+To get started, let's add some protections so that no one accidentally breaks the club registration system.
+
+1. If necessary, open another tab and navigate to this repository. We will start on the **Code** tab.
 
 1. In the top navigation, select the **Settings** tab.
 
@@ -38,7 +40,7 @@ Now let's add some protections so that no one accidentally breaks the club regis
 
    <img width="250" alt="image" src="https://github.com/user-attachments/assets/ce30fd34-39b5-4e22-b348-4af61fd05cd1" />
 
-1. Locate the the **Targets** section. Use the **Add target** dropdown to add 2 entries:
+1. Find the the **Targets** section and use the **Add target** dropdown to add 2 entries:
 
    1. Add the **Include default branch** option to ensure protections aren't bypassed by switching the default branch.
 
@@ -46,34 +48,30 @@ Now let's add some protections so that no one accidentally breaks the club regis
 
    1. Use the **include by pattern** option and enter the pattern `main`.
 
-      <img width="250" alt="image" src="https://github.com/user-attachments/assets/47a835de-62dc-4f34-96d8-c2562f03af1a" />
+      <img width="250" alt="image" src="https://github.com/user-attachments/assets/968c9ed8-b051-44eb-af42-d99670ad31fd" />
 
       <img width="250" alt="image" src="https://github.com/user-attachments/assets/ddc52767-d93e-4c9e-a77a-90c3b5c08fb5" />
 
-1. Locate the **Rules** section. Ensure the following items are checked.
+1. Find the **Rules** section and ensure the following items are checked.
+
    - [x] Restrict deletions
    - [x] Require a pull request before merging
      - Required approvals: `1`
-     - [x] Require review from Code Owners (explained in next step)
-   - [x] Require status checks to pass before merging
+     - [x] Require review from Code Owners
+
+1. Scroll to the bottom and click the **Create** button to save the ruleset.
 
 ## ⌨️ Activity: Create a `.gitignore` file
 
-Let's start by making sure we don't accidentally commit files:
+We know many teachers use different tools, so let's make sure they don't accidentally commit unnecessary files.
 
-1. If necessary, open another tab and navigate to this repository. We will start on the **Code** tab.
-
-1. Above the list of files, select the **branch dropdown menu**.
-
-1. Create a new branch with the name `prepare-to-collaborate`.
-
-   <img width="300" alt="image" src="https://github.com/user-attachments/assets/1c04a3e4-e492-4857-9527-2b43908a1da1"/>
+1. If you are not at your repository, return to the **Code** tab ane make sure you are on the `main` branch.
 
 1. Above the list of files, click the **Add file** dropdown and select **Create new file**.
 
    <img width="300" alt="New file button" src="https://github.com/user-attachments/assets/8f3f8da8-1471-485a-9df5-8c03ecba2d8e"/>
 
-1. Enter the file name `.gitignore` and copy following example content into it.
+1. Enter the file name `.gitignore`. We will ignore the template selector for now and make our own. Copy the below example content into it.
 
    <img width="350" alt="preview of new file" src="https://github.com/user-attachments/assets/580d1a63-a264-4d44-8901-50ad708b8822"/>
 
@@ -104,13 +102,13 @@ Let's start by making sure we don't accidentally commit files:
    Thumbs.db      # For teachers with Windows
    ```
 
-1. In the top right, select the **Commit changes...** button. Notice that it won't let us commit to the `main` branch! Nice!
+1. In the top right, select the **Commit changes...** button. Notice that it won't let us commit to the `main` branch! Our ruleset is working! Nice!
 
    <img width="400" alt="image" src="https://github.com/user-attachments/assets/4e85948d-75c8-4c13-8ddd-4707bf9b0805" />
 
-1. Enter `prepare-to-collaborate` for the branch name then click the **Propose changes** button.
+1. Enter `prepare-to-collaborate` for the branch name then click the **Propose changes** button. You can ignore the newly created pull request for now.
 
 1. With the file committed, wait a moment for Mona to check your work, provide feedback, and share the next lesson.
 
 > [!TIP]
-> GitHub and the community have built up a repository with [sample `.gitignore` files](https://github.com/github/gitignore) for many situations. Make sure to check it out!
+> GitHub and the community have built a repository with [sample `.gitignore` files](https://github.com/github/gitignore) for many situations. Make sure to check it out!
