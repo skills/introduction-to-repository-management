@@ -9,18 +9,18 @@ While you're thrilled about their enthusiasm, you realize you need to set up som
 
 Opening your project to other teachers at Mergington High means thinking about how everyone will work together without breaking each other's code. To help with collaboration, GitHub provides two special files:
 
-1. `CONTRIBUTING.md` - A "How to Help" guide. Some example content:
+1. **`CONTRIBUTING.md` file** - A "How to Help" guide. Some example content:
 
    - How to prepare a developer setup of the extra-curricular activities website.
    - The process for suggesting changes.
    - The project's coding style preference, to keep things consistent.
    - How to ask for help when stuck.
 
-2. `CODEOWNERS` - Assign specific people or teams responsible for a portion of the project.
+2. **`CODEOWNERS` file** - Assign specific people or teams responsible for a portion of the project.
 
    - When someone creates a pull request, GitHub will automatically ask the right person to review it.
 
-3. **Collaborators** - Give other people access to the project.
+3. **Collaborators** - Give other people access to the project through repository settings.
 
    - Provide other people permissions to change project files while still protecting repository settings.
    - Personal repositories have simple permissions. Organization repositories allow flexible permissions such as read, write, maintain, and admin.
@@ -29,7 +29,7 @@ Opening your project to other teachers at Mergington High means thinking about h
 
 The IT Club meeting is tomorrow, and you need to prepare for Ms. Rodriguez and Mr. Chen to join the project. Let's start a document to help them contribute effectively.
 
-1. Ensure you you are on the `prepare-to-collaborate` branch at the root directory.
+1. If you are not at your repository, return to the **Code** tab. Ensure you you are on the `prepare-to-collaborate` branch at the root directory.
 
 1. In the top directory, create a new file called `CONTRIBUTING.md`.
 
@@ -38,7 +38,9 @@ The IT Club meeting is tomorrow, and you need to prepare for Ms. Rodriguez and M
    ```md
    # Contributing to the Mergington High Extra-Curricular Activities Website
 
-   Thank you for your interest in helping improve our school's website! Whether you want to add your club's activities, fix a bug, or suggest new features, this guide will help you get started. 🎉
+   Thank you for your interest in helping improve our school's website!
+   Whether you want to add your club's activities, fix a bug, or suggest
+   new features, this guide will help you get started. 🎉
    ```
 
 1. Add instructions to help them quickly start developing.
@@ -129,4 +131,4 @@ Ready to let your colleague start working on that photo gallery feature? Let's d
    <img width="350" alt="" src="https://github.com/user-attachments/assets/caf1a193-c9db-4962-b01e-66666ef54369" />
 
    > [!IMPORTANT]  
-   > Personal repositories only have one collaboration role type. A "collaborator" receives **write** permissions but NOT **admin** permissions.
+   > Personal repositories only have one collaboration role type. A "collaborator" receives **write** permissions but NOT **admin** permissions. If you need finer permissions, consider starting a free [organization](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations) and assigning [repository roles](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization).
