@@ -111,3 +111,6 @@ Let's start by making sure we don't accidentally commit files:
 1. Enter `prepare-to-collaborate` for the branch name then click the **Propose changes** button.
 
 1. With the file committed, wait a moment for Mona to check your work, provide feedback, and share the next lesson.
+
+> [!TIP]
+> GitHub and the community have built up a repository with [sample `.gitignore` files](https://github.com/github/gitignore) for many situations. Make sure to check it out!
