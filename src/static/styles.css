@@ -1,3 +1,37 @@
+/* Color palette */
+:root {
+  /* Primary colors */
+  --primary: #1a237e;
+  --primary-light: #534bae;
+  --primary-dark: #000051;
+  --primary-text: #ffffff;
+
+  /* Secondary colors */
+  --secondary: #ff6f00;
+  --secondary-light: #ffa040;
+  --secondary-dark: #c43e00;
+  --secondary-text: #ffffff;
+
+  /* Neutral colors */
+  --background: #f5f5f5;
+  --surface: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --border: #e0e0e0;
+  --border-light: #f0f0f0;
+  --border-focus: #d0d0d0;
+
+  /* Feedback colors */
+  --success: #2e7d32;
+  --success-light: #e8f5e9;
+  --warning: #ff9800;
+  --warning-light: #fff3cd;
+  --error: #c62828;
+  --error-light: #ffebee;
+  --info: #0c5460;
+  --info-light: #d1ecf1;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,20 +42,21 @@
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  color: #333;
+  color: var(--text-primary);
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: var(--background);
 }
 
 header {
   text-align: center;
   padding: 20px 0;
   margin-bottom: 30px;
-  background-color: #1a237e;
-  color: white;
+  background-color: var(--primary);
+  color: var(--primary-text);
   border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 }
 
 header h1 {
@@ -35,7 +70,7 @@ main {
 }
 
 section {
-  background-color: white;
+  background-color: var(--surface);
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -45,8 +80,8 @@ section {
 section h3 {
   margin-bottom: 20px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-  color: #1a237e;
+  border-bottom: 1px solid var(--border);
+  color: var(--primary);
 }
 
 #activities-list {
@@ -58,9 +93,9 @@ section h3 {
 
 .activity-card {
   padding: 20px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: var(--surface);
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -73,22 +108,22 @@ section h3 {
 .activity-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  border-color: #d0d0d0;
+  border-color: var(--border-focus);
 }
 
 .activity-card h4 {
   margin-bottom: 12px;
-  color: #1a237e;
+  color: var(--primary);
   font-size: 1.2rem;
   letter-spacing: 0.3px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .activity-card p {
   margin-bottom: 10px;
   line-height: 1.5;
-  color: #424242;
+  color: var(--text-primary);
 }
 
 .activity-card-actions {
@@ -121,7 +156,7 @@ section h3 {
 
 .capacity-bar-bg {
   height: 8px;
-  background-color: #f0f0f0;
+  background-color: var(--border-light);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -137,19 +172,19 @@ section h3 {
   justify-content: space-between;
   margin-top: 4px;
   font-size: 0.8rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .capacity-full .capacity-bar-fill {
-  background-color: #f44336;
+  background-color: var(--error);
 }
 
 .capacity-near-full .capacity-bar-fill {
-  background-color: #ff9800;
+  background-color: var(--warning);
 }
 
 .capacity-available .capacity-bar-fill {
-  background-color: #4caf50;
+  background-color: var(--success);
 }
 
 /* Tooltip styles */
@@ -188,9 +223,9 @@ section h3 {
 /* Activity skeletons for loading state */
 .skeleton-card {
   padding: 20px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: var(--surface);
   display: flex;
   flex-direction: column;
   height: 250px;
@@ -201,7 +236,12 @@ section h3 {
 .skeleton-line {
   height: 15px;
   margin-bottom: 10px;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(
+    90deg,
+    var(--border-light) 25%,
+    var(--border) 50%,
+    var(--border-light) 75%
+  );
   background-size: 200% 100%;
   border-radius: 4px;
   animation: shimmer 1.5s infinite;
@@ -251,7 +291,7 @@ section h3 {
 }
 
 .modal-content {
-  background-color: #fff;
+  background-color: var(--surface);
   padding: 25px;
   border-radius: 5px;
   width: 90%;
@@ -271,11 +311,11 @@ section h3 {
   top: 10px;
   font-size: 24px;
   cursor: pointer;
-  color: #555;
+  color: var(--text-secondary);
 }
 
 .close-modal:hover {
-  color: #000;
+  color: var(--text-primary);
 }
 
 .message {
@@ -286,20 +326,20 @@ section h3 {
 }
 
 .success {
-  background-color: #e8f5e9;
-  color: #2e7d32;
+  background-color: var(--success-light);
+  color: var(--success);
   border: 1px solid #a5d6a7;
 }
 
 .error {
-  background-color: #ffebee;
-  color: #c62828;
+  background-color: var(--error-light);
+  color: var(--error);
   border: 1px solid #ef9a9a;
 }
 
 .info {
-  background-color: #d1ecf1;
-  color: #0c5460;
+  background-color: var(--info-light);
+  color: var(--info);
   border: 1px solid #bee5eb;
 }
 
@@ -311,7 +351,7 @@ footer {
   text-align: center;
   margin-top: 30px;
   padding: 20px;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 /* Responsive adjustments */
@@ -354,7 +394,7 @@ footer {
 
 #login-button {
   background: rgba(255, 255, 255, 0.15);
-  color: white;
+  color: var(--primary-text);
   border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 8px 16px;
   border-radius: 30px;
@@ -387,7 +427,7 @@ footer {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: white;
+  color: var(--primary-text);
   background: rgba(255, 255, 255, 0.15);
   padding: 8px 16px;
   border-radius: 30px;
@@ -404,7 +444,7 @@ footer {
 
 #logout-button {
   background: rgba(255, 255, 255, 0.2);
-  color: white;
+  color: var(--primary-text);
   border: none;
   padding: 5px 12px;
   border-radius: 20px;
@@ -458,10 +498,74 @@ footer {
 .auth-notice {
   margin: 10px 0;
   padding: 10px;
-  background-color: #fff3cd;
+  background-color: var(--warning-light);
   border: 1px solid #ffeeba;
   color: #856404;
   border-radius: 4px;
   text-align: center;
   font-size: 14px;
+}
+
+/* Apply secondary color to buttons and interactive elements */
+.register-button {
+  background: linear-gradient(145deg, var(--secondary), var(--secondary-dark));
+  color: var(--secondary-text);
+  margin-top: 15px;
+  padding: 10px 20px;
+  width: 100%;
+  font-weight: bold;
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(255, 111, 0, 0.2);
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: none;
+}
+
+.register-button:hover {
+  background: linear-gradient(145deg, var(--secondary-light), var(--secondary));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(255, 111, 0, 0.3);
+}
+
+.register-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 3px rgba(255, 111, 0, 0.3);
+}
+
+.register-button:disabled {
+  background: linear-gradient(145deg, #a1a1a1, #d4d4d4);
+  color: #666;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+button[type="submit"] {
+  background-color: var(--secondary);
+  color: var(--secondary-text);
+  transition: background-color 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--secondary-light);
+}
+
+/* Confirmation dialog buttons */
+.confirm-btn {
+  background-color: var(--secondary) !important;
+  color: var(--secondary-text) !important;
+}
+
+.confirm-btn:hover {
+  background-color: var(--secondary-dark) !important;
+}
+
+.cancel-btn {
+  background-color: #f1f1f1;
+  color: var(--text-primary);
 }
