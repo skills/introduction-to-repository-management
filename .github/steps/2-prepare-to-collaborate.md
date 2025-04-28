@@ -1,103 +1,134 @@
 # Step 2: Prepare to collaborate
 
-_Your simple school website has become quite popular! After showing it at the last staff meeting, Ms. Rodriguez from the Art Club and Mr. Chen from the Chess Club came up to you super excited. They have tons of ideas for new features - Ms. Rodriguez wants to add a virtual art gallery, and Mr. Chen dreams of an interactive chess tournament bracket system! 🎨♟️_
+Your simple school website has become quite popular! After showing it at the last staff meeting, Ms. Rodriguez from the Art Club and Mr. Chen from the Chess Club came up to you super excited. They have tons of ideas for new features!
 
-_While you're thrilled about their enthusiasm, you realize you need to set up some guidelines before letting them dive into the code. The last thing you want is conflicting changes breaking the club registration system right before the big school fair! 📚_
+- Ms. Rodriguez wants to add a photo gallery
+- Mr. Chen dreams of adding a tournament bracket system for the chess/sports activities! 🎨♟️
+
+While you're thrilled about their enthusiasm, you realize you need to set up some guidelines before letting them start changing code. The last thing you want is conflicting changes breaking the registration system right before spring break!
 
 ## Theory
 
-Opening your project to other teachers at Mergington High means thinking about how everyone will work together without stepping on each other's toes. For a successful collaboration, GitHub provides two special files:
+Opening your project to other teachers at Mergington High means thinking about how everyone will work together without breaking each other's code. To help with collaboration, GitHub provides two special files:
 
-1. `CONTRIBUTING.md` - Think of this as your "How to Help" guide that tells other teachers:
+1. `CONTRIBUTING.md` - A "How to Help" guide. Some example content:
 
-   - How to set up the extra-curricular activities website on their computers
-   - The steps for suggesting changes (like adding their club's features!)
-   - Your coding style preferences (to keep things consistent)
-   - Where to ask for help when stuck
+   - How to prepare a developer setup of the extra-curricular activities website.
+   - The process for suggesting changes.
+   - The project's coding style preference, to keep things consistent.
+   - How to ask for help when stuck.
 
-2. `CODEOWNERS` - This is like assigning "department heads" for different parts of the website. When someone wants to change something in a specific area (like the event calendar or the club registration system), GitHub will automatically ask the right person to review it.
+2. `CODEOWNERS` - Assign specific people or teams responsible for a portion of the project.
 
-> ❕ **Important:** While your school has a GitHub organization account, Principal Martinez suggested keeping the project in your personal repository for now, since you're still in the initial development phase.
+   - When someone creates a pull request, GitHub will automatically ask the right person to review it.
 
-## Activity 1: Create a welcoming contribution guide
+3. **Collaborators** - Give other people access to the project.
 
-The IT Club meeting is tomorrow, and you need to prepare for Ms. Rodriguez and Mr. Chen to join the project. Let's create a `CONTRIBUTING.md` file:
+   - Provide other people permissions to change project files while still protecting repository settings.
+   - Personal repositories have simple permissions. Organization repositories allow flexible permissions such as read, write, maintain, and admin.
 
-1. In your `prepare-to-collaborate` branch, create a new file called `CONTRIBUTING.md`
-2. Add the following content:
+## ⌨️ Activity: Create a welcoming contribution guide
 
-   ```markdown
+The IT Club meeting is tomorrow, and you need to prepare for Ms. Rodriguez and Mr. Chen to join the project. Let's start a document to help them contribute effectively.
+
+1. Ensure you you are on the `prepare-to-collaborate` branch at the root directory.
+
+1. In the top directory, create a new file called `CONTRIBUTING.md`.
+
+1. Add a welcoming message.
+
+   ```md
    # Contributing to the Mergington High Extra-Curricular Activities Website
 
    Thank you for your interest in helping improve our school's website! Whether you want to add your club's activities, fix a bug, or suggest new features, this guide will help you get started. 🎉
+   ```
 
+1. Add instructions to help them quickly start developing.
+
+   ```md
    ## Development Setup
 
-   1. Clone the repository to your computer
-   2. Install Python requirements: `pip install -r requirements.txt`
-   3. Run the development server: `python src/app.py`
-   4. Visit http://localhost:5000 in your browser to see the club registration system
+   1. Clone the repository to your computer.
+   2. Install Python requirements: `pip install -r requirements.txt`.
+   3. Run the development server: `python src/app.py`.
+   4. Visit http://localhost:8000 in your browser to see the website.
 
    ## Making Changes
 
-   1. Create a new branch for your changes
+   1. Create a new branch for your changes.
       - Use descriptive names like `art-gallery-feature` or `fix-chess-signup`
-   2. Make your changes and test them locally with sample student data
-   3. Push your branch and create a pull request
-   4. Wait for review and address any feedback
+   2. Make your changes and test them locally with sample student data.
+      - Use the MongoDB extension to preview the included sample date.
+   3. Push your branch and create a pull request.
+   4. Wait for review and address any feedback.
 
    ## Code Style
 
-   - Follow PEP 8 for Python code in the club management backend
-   - Use clear, descriptive variable names (studentName, clubRegistration, etc.)
-   - Add comments for complex logic in the registration system
-   - Test your changes before submitting to ensure student data handling works correctly
-
-   ## Need Help?
-
-   - Create an issue describing what you're trying to do
-   - Ask in our weekly IT Club office hours (Thursdays at lunch in Room 203)
-   - Email the tech team at techclub@mergingtonhigh.example.edu
+   - Follow PEP 8 for Python code (backend).
+   - Use clear, descriptive variable names (student_name, start_time, etc.)
+   - Add comments to describe blocks of logic.
    ```
 
-## Activity 2: Assign code ownership
+1. Add a section for getting help.
 
-Now that Ms. Rodriguez and Mr. Chen are eager to contribute to the website, you need to make sure critical parts of the codebase get proper review. As the original developer, you should remain the primary reviewer for the core functionality:
+   ```md
+   ## Need help or have ideas?
 
-1. In your `prepare-to-collaborate` branch, create a new file called `CODEOWNERS`
-2. Add the following content (replace YOUR_USERNAME with your GitHub username):
-
-   ```
-   # Core website functionality - changes here could affect all clubs' registration systems!
-   /src/app.py @YOUR_USERNAME
-
-   # Database and student data models - we need to be extra careful with student information
-   /src/models/ @YOUR_USERNAME
-
-   # Frontend styling and assets - where Ms. Rodriguez's art gallery will live!
-   /src/static/ @YOUR_USERNAME
+   - Check the open issues first.
+     - If your problem is there, add a comment or up-vote.
+     - If not there, create a new issue. Be as descriptive as possible.
+   - Ask in our weekly IT Club office hours (Thursdays at lunch in Room 203).
+   - For other general problems, email the tech team at techclub@mergingtonhigh.example.edu
    ```
 
-## Optional Activity: Add your first collaborator
+1. In the top right, use the **Commit changes...** button to save your changes.
 
-Ready to let Ms. Rodriguez start working on that art gallery feature for the upcoming student showcase?
+## ⌨️ Activity: Assign code ownership
 
-1. Go to your repository's Settings tab
-2. Click on "Collaborators and teams" in the sidebar
-3. Click "Add people"
-4. Enter Ms. Rodriguez's GitHub username or email address
-5. Select "Write" access so she can suggest changes to the website's frontend
+With others joining the fun, you want to stay involved on anything affecting architecture and core functionality. Let's assign you to the related files.
 
-> 💡 **Tip:** Start with one club sponsor at a time - maybe Ms. Rodriguez for the art gallery feature. This will help you get comfortable reviewing changes before the Chess Club, Drama Club, and others start submitting their own feature requests.
+1. Ensure you you are on the `prepare-to-collaborate` branch at the root directory.
 
-When you've completed these activities, commit your changes to the `prepare-to-collaborate` branch so you can show your progress at tomorrow's IT Club meeting.
+1. Above the list of files, click the **Add file** dropdown and select **Create new file**.
 
-## What's next?
+   <img width="300" alt="New file button" src="https://github.com/user-attachments/assets/8f3f8da8-1471-485a-9df5-8c03ecba2d8e"/>
 
-With contribution guidelines in place and code ownership set up, your fellow teachers can start working on their exciting new features safely! In the next step, we'll add some important files to make the project even more collaboration-friendly and set ground rules for everyone to follow so the website remains stable as more clubs come on board. 🤝
+1. Set the file name as `CODEOWNERS`, without an file extension.
 
-### References
+1. Add the following content:
 
-- [Setting guidelines for repository contributors](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors)
-- [About code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)
-- [Repository roles for an organization](https://docs.github.com/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization)
+   ```codeowners
+   # Core functionality - changes here should be rare!
+   /src/app.py                   @{{ login }}
+   /src/backend/database.py      @{{ login }}
+   /src/backend/routers/auth.py  @{{ login }}
+
+   # The frontend will need refactored soon to be more object oriented.
+   /src/static/   @{{ login }}
+   ```
+
+1. In the top right, use the **Commit changes...** button to save your changes.
+
+1. With the files committed, wait a moment for Mona to check your work, provide feedback, and share the next lesson.
+
+## ⌨️ Activity: (Optional) Add your first collaborator
+
+Ready to let your colleague start working on that photo gallery feature? Let's do it!
+
+> [!IMPORTANT]
+> This step is optional because it requires another person with a GitHub account to participate.
+
+1. In the top navigation, select the **Settings** tab.
+
+1. In the left navigation, select **Collaborators**.
+
+1. Find the **Manage access** area and click the **Add people** button.
+
+   <img width="350" alt="" src="https://github.com/user-attachments/assets/b1675ad5-57b1-441e-ab7a-22d26dccf6ce" />
+
+1. Enter a friend/colleague's GitHub username or email then press the **Add to repository** button.
+
+   <img width="350" alt="" src="https://github.com/user-attachments/assets/caf1a193-c9db-4962-b01e-66666ef54369" />
+
+   > [!IMPORTANT]  
+   > Personal repositories only have one collaboration role type. A "collaborator" receives **write** permissions but NOT **admin** permissions.
