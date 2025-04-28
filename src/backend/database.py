@@ -3,13 +3,33 @@ MongoDB database configuration and setup for Mergington High School API
 """
 
 from pymongo import MongoClient
+import hashlib
 
 # Connect to MongoDB
 client = MongoClient('mongodb://localhost:27017/')
 db = client['mergington_high']
 activities_collection = db['activities']
+teachers_collection = db['teachers']
 
-# Initial data to populate the database if empty
+# Methods
+def hash_password(password):
+    """Hash password using SHA-256"""
+    return hashlib.sha256(password.encode()).hexdigest()
+
+def init_database():
+    """Initialize database if empty"""
+
+    # Initialize activities if empty
+    if activities_collection.count_documents({}) == 0:
+        for name, details in initial_activities.items():
+            activities_collection.insert_one({"_id": name, **details})
+            
+    # Initialize teacher accounts if empty
+    if teachers_collection.count_documents({}) == 0:
+        for teacher in initial_teachers:
+            teachers_collection.insert_one({"_id": teacher["username"], **teacher})
+
+# Initial database if empty
 initial_activities = {
     "Chess Club": {
         "description": "Learn strategies and compete in chess tournaments",
@@ -67,8 +87,24 @@ initial_activities = {
     }
 }
 
-def init_database():
-    """Initialize database with activities if empty"""
-    if activities_collection.count_documents({}) == 0:
-        for name, details in initial_activities.items():
-            activities_collection.insert_one({"_id": name, **details})
+initial_teachers = [
+    {
+        "username": "mrodriguez",
+        "display_name": "Ms. Rodriguez",
+        "password": hash_password("art123"),
+        "role": "teacher"
+     },
+    {
+        "username": "mchen",
+        "display_name": "Mr. Chen",
+        "password": hash_password("chess456"),
+        "role": "teacher"
+    },
+    {
+        "username": "principal",
+        "display_name": "Principal Martinez",
+        "password": hash_password("admin789"),
+        "role": "admin"
+    }
+]
+

@@ -10,6 +10,18 @@
     <header>
       <h1>Mergington High School</h1>
       <h2>Extracurricular Activities</h2>
+      <div id="user-controls">
+        <div id="user-status">
+          <button id="login-button" class="icon-button">
+            <span class="user-icon">👤</span>
+            <span>Login</span>
+          </button>
+          <div id="user-info" class="hidden">
+            <span id="display-name"></span>
+            <button id="logout-button">Logout</button>
+          </div>
+        </div>
+      </div>
     </header>
 
     <main>
@@ -35,11 +47,46 @@
         <form id="signup-form">
           <div class="form-group">
             <label for="email">Student Email:</label>
-            <input type="email" id="email" required placeholder="your-email@mergington.edu" />
+            <input
+              type="email"
+              id="email"
+              required
+              placeholder="your-email@mergington.edu"
+            />
           </div>
           <input type="hidden" id="activity" value="" />
           <button type="submit">Register</button>
         </form>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-login-modal">&times;</span>
+        <h3>Teacher Login</h3>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              required
+              placeholder="Enter your username"
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              required
+              placeholder="Enter your password"
+            />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+        <div id="login-message" class="hidden message"></div>
       </div>
     </div>
 
