@@ -27,6 +27,43 @@
     <main>
       <section id="activities-container">
         <h3>Available Activities</h3>
+
+        <!-- Search and Filter Controls -->
+        <div class="search-filter-container">
+          <div class="search-box">
+            <input
+              type="text"
+              id="activity-search"
+              placeholder="Search activities..."
+            />
+            <button id="search-button" aria-label="Search">
+              <span class="search-icon">🔍</span>
+            </button>
+          </div>
+
+          <div class="filter-container">
+            <div class="filter-label">Filter by category:</div>
+            <div class="category-filters" id="category-filters">
+              <button class="category-filter active" data-category="all">
+                All
+              </button>
+              <button class="category-filter" data-category="sports">
+                Sports
+              </button>
+              <button class="category-filter" data-category="arts">Arts</button>
+              <button class="category-filter" data-category="academic">
+                Academic
+              </button>
+              <button class="category-filter" data-category="community">
+                Community
+              </button>
+              <button class="category-filter" data-category="technology">
+                Technology
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div id="activities-list">
           <!-- Activities will be loaded here -->
           <p>Loading activities...</p>

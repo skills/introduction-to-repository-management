@@ -8,6 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const activityInput = document.getElementById("activity");
   const closeRegistrationModal = document.querySelector(".close-modal");
 
+  // Search and filter elements
+  const searchInput = document.getElementById("activity-search");
+  const searchButton = document.getElementById("search-button");
+  const categoryFilters = document.querySelectorAll(".category-filter");
+
   // Authentication elements
   const loginButton = document.getElementById("login-button");
   const userInfo = document.getElementById("user-info");
@@ -26,6 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
     community: { label: "Community", color: "#fff3e0", textColor: "#e65100" },
     technology: { label: "Technology", color: "#e8eaf6", textColor: "#3949ab" },
   };
+
+  // State for activities and filters
+  let allActivities = {};
+  let currentFilter = "all";
+  let searchQuery = "";
 
   // Authentication state
   let currentUser = null;
@@ -190,20 +200,20 @@ document.addEventListener("DOMContentLoaded", () => {
   function showLoadingSkeletons() {
     activitiesList.innerHTML = "";
 
-    // Create 6 skeleton cards
-    for (let i = 0; i < 6; i++) {
+    // Create more skeleton cards to fill the screen since they're smaller now
+    for (let i = 0; i < 9; i++) {
       const skeletonCard = document.createElement("div");
       skeletonCard.className = "skeleton-card";
       skeletonCard.innerHTML = `
         <div class="skeleton-line skeleton-title"></div>
         <div class="skeleton-line"></div>
-        <div class="skeleton-line"></div>
         <div class="skeleton-line skeleton-text short"></div>
-        <div style="margin-top: 15px;">
-          <div class="skeleton-line"></div>
+        <div style="margin-top: 8px;">
+          <div class="skeleton-line" style="height: 6px;"></div>
+          <div class="skeleton-line skeleton-text short" style="height: 8px; margin-top: 3px;"></div>
         </div>
         <div style="margin-top: auto;">
-          <div class="skeleton-line" style="height: 35px; margin-top: 15px;"></div>
+          <div class="skeleton-line" style="height: 24px; margin-top: 8px;"></div>
         </div>
       `;
       activitiesList.appendChild(skeletonCard);
@@ -273,129 +283,206 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch("/activities");
       const activities = await response.json();
 
-      // Add a small delay to show the skeleton effect (remove in production)
-      setTimeout(() => {
-        // Clear loading skeletons
-        activitiesList.innerHTML = "";
+      // Save the activities data
+      allActivities = activities;
 
-        // Populate activities list
-        Object.entries(activities).forEach(([name, details]) => {
-          const activityCard = document.createElement("div");
-          activityCard.className = "activity-card";
-
-          // Calculate spots and capacity
-          const totalSpots = details.max_participants;
-          const takenSpots = details.participants.length;
-          const spotsLeft = totalSpots - takenSpots;
-          const capacityPercentage = (takenSpots / totalSpots) * 100;
-          const isFull = spotsLeft <= 0;
-
-          // Determine capacity status class
-          let capacityStatusClass = "capacity-available";
-          if (isFull) {
-            capacityStatusClass = "capacity-full";
-          } else if (capacityPercentage >= 75) {
-            capacityStatusClass = "capacity-near-full";
-          }
-
-          // Determine activity type
-          const activityType = getActivityType(name, details.description);
-          const typeInfo = activityTypes[activityType];
-
-          // Create activity tag
-          const tagHtml = `
-            <span class="activity-tag" style="background-color: ${typeInfo.color}; color: ${typeInfo.textColor}">
-              ${typeInfo.label}
-            </span>
-          `;
-
-          // Create capacity indicator
-          const capacityIndicator = `
-            <div class="capacity-container ${capacityStatusClass}">
-              <div class="capacity-bar-bg">
-                <div class="capacity-bar-fill" style="width: ${capacityPercentage}%"></div>
-              </div>
-              <div class="capacity-text">
-                <span>${takenSpots} enrolled</span>
-                <span>${spotsLeft} spots left</span>
-              </div>
-            </div>
-          `;
-
-          activityCard.innerHTML = `
-            ${tagHtml}
-            <h4>${name}</h4>
-            <p>${details.description}</p>
-            <p class="tooltip">
-              <strong>Schedule:</strong> ${details.schedule}
-              <span class="tooltip-text">Regular meetings at this time throughout the semester</span>
-            </p>
-            ${capacityIndicator}
-            <div class="participants-list">
-              <h5>Current Participants:</h5>
-              <ul>
-                ${details.participants
-                  .map(
-                    (email) => `
-                  <li>
-                    ${email}
-                    <span class="delete-participant tooltip" data-activity="${name}" data-email="${email}">
-                      ✖
-                      <span class="tooltip-text">Unregister this student</span>
-                    </span>
-                  </li>
-                `
-                  )
-                  .join("")}
-              </ul>
-            </div>
-            <div class="activity-card-actions">
-              ${
-                currentUser
-                  ? `
-                <button class="register-button" data-activity="${name}" ${
-                      isFull ? "disabled" : ""
-                    }>
-                  ${isFull ? "Activity Full" : "Register Student"}
-                </button>
-              `
-                  : `
-                <div class="auth-notice">
-                  Teachers can register students.
-                </div>
-              `
-              }
-            </div>
-          `;
-
-          // Add click handlers for delete buttons
-          const deleteButtons = activityCard.querySelectorAll(
-            ".delete-participant"
-          );
-          deleteButtons.forEach((button) => {
-            button.addEventListener("click", handleUnregister);
-          });
-
-          // Add click handler for register button (only when authenticated)
-          if (currentUser) {
-            const registerButton =
-              activityCard.querySelector(".register-button");
-            if (!isFull) {
-              registerButton.addEventListener("click", () => {
-                openRegistrationModal(name);
-              });
-            }
-          }
-
-          activitiesList.appendChild(activityCard);
-        });
-      }, 800); // Small delay to show loading effect, remove in production
+      // Apply search and filter
+      displayFilteredActivities();
     } catch (error) {
       activitiesList.innerHTML =
         "<p>Failed to load activities. Please try again later.</p>";
       console.error("Error fetching activities:", error);
     }
   }
+
+  // Function to display filtered activities
+  function displayFilteredActivities() {
+    // Clear the activities list
+    activitiesList.innerHTML = "";
+
+    // Filter activities based on current filter and search query
+    const filteredActivities = filterActivities(
+      allActivities,
+      currentFilter,
+      searchQuery
+    );
+
+    // Check if there are any results
+    if (Object.keys(filteredActivities).length === 0) {
+      activitiesList.innerHTML = `
+        <div class="no-results">
+          <h4>No activities found</h4>
+          <p>Try adjusting your search or filter criteria</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Display filtered activities
+    Object.entries(filteredActivities).forEach(([name, details]) => {
+      renderActivityCard(name, details);
+    });
+  }
+
+  // Function to filter activities based on category and search query
+  function filterActivities(activities, categoryFilter, query) {
+    // Clone the activities object to avoid modifying the original
+    const filtered = {};
+
+    Object.entries(activities).forEach(([name, details]) => {
+      const activityType = getActivityType(name, details.description);
+      const matchesCategory =
+        categoryFilter === "all" || activityType === categoryFilter;
+
+      // Check if activity matches search query (case insensitive)
+      const matchesQuery =
+        query === "" ||
+        name.toLowerCase().includes(query.toLowerCase()) ||
+        details.description.toLowerCase().includes(query.toLowerCase()) ||
+        details.schedule.toLowerCase().includes(query.toLowerCase());
+
+      // Add to filtered activities if it matches both category and search
+      if (matchesCategory && matchesQuery) {
+        filtered[name] = details;
+      }
+    });
+
+    return filtered;
+  }
+
+  // Function to render a single activity card
+  function renderActivityCard(name, details) {
+    const activityCard = document.createElement("div");
+    activityCard.className = "activity-card";
+
+    // Calculate spots and capacity
+    const totalSpots = details.max_participants;
+    const takenSpots = details.participants.length;
+    const spotsLeft = totalSpots - takenSpots;
+    const capacityPercentage = (takenSpots / totalSpots) * 100;
+    const isFull = spotsLeft <= 0;
+
+    // Determine capacity status class
+    let capacityStatusClass = "capacity-available";
+    if (isFull) {
+      capacityStatusClass = "capacity-full";
+    } else if (capacityPercentage >= 75) {
+      capacityStatusClass = "capacity-near-full";
+    }
+
+    // Determine activity type
+    const activityType = getActivityType(name, details.description);
+    const typeInfo = activityTypes[activityType];
+
+    // Create activity tag
+    const tagHtml = `
+      <span class="activity-tag" style="background-color: ${typeInfo.color}; color: ${typeInfo.textColor}">
+        ${typeInfo.label}
+      </span>
+    `;
+
+    // Create capacity indicator
+    const capacityIndicator = `
+      <div class="capacity-container ${capacityStatusClass}">
+        <div class="capacity-bar-bg">
+          <div class="capacity-bar-fill" style="width: ${capacityPercentage}%"></div>
+        </div>
+        <div class="capacity-text">
+          <span>${takenSpots} enrolled</span>
+          <span>${spotsLeft} spots left</span>
+        </div>
+      </div>
+    `;
+
+    activityCard.innerHTML = `
+      ${tagHtml}
+      <h4>${name}</h4>
+      <p>${details.description}</p>
+      <p class="tooltip">
+        <strong>Schedule:</strong> ${details.schedule}
+        <span class="tooltip-text">Regular meetings at this time throughout the semester</span>
+      </p>
+      ${capacityIndicator}
+      <div class="participants-list">
+        <h5>Current Participants:</h5>
+        <ul>
+          ${details.participants
+            .map(
+              (email) => `
+            <li>
+              ${email}
+              <span class="delete-participant tooltip" data-activity="${name}" data-email="${email}">
+                ✖
+                <span class="tooltip-text">Unregister this student</span>
+              </span>
+            </li>
+          `
+            )
+            .join("")}
+        </ul>
+      </div>
+      <div class="activity-card-actions">
+        ${
+          currentUser
+            ? `
+          <button class="register-button" data-activity="${name}" ${
+                isFull ? "disabled" : ""
+              }>
+            ${isFull ? "Activity Full" : "Register Student"}
+          </button>
+        `
+            : `
+          <div class="auth-notice">
+            Teachers can register students.
+          </div>
+        `
+        }
+      </div>
+    `;
+
+    // Add click handlers for delete buttons
+    const deleteButtons = activityCard.querySelectorAll(".delete-participant");
+    deleteButtons.forEach((button) => {
+      button.addEventListener("click", handleUnregister);
+    });
+
+    // Add click handler for register button (only when authenticated)
+    if (currentUser) {
+      const registerButton = activityCard.querySelector(".register-button");
+      if (!isFull) {
+        registerButton.addEventListener("click", () => {
+          openRegistrationModal(name);
+        });
+      }
+    }
+
+    activitiesList.appendChild(activityCard);
+  }
+
+  // Event listeners for search and filter
+  searchInput.addEventListener("input", (event) => {
+    searchQuery = event.target.value;
+    displayFilteredActivities();
+  });
+
+  searchButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    searchQuery = searchInput.value;
+    displayFilteredActivities();
+  });
+
+  // Add event listeners to category filter buttons
+  categoryFilters.forEach((button) => {
+    button.addEventListener("click", () => {
+      // Update active class
+      categoryFilters.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      // Update current filter and display filtered activities
+      currentFilter = button.dataset.category;
+      displayFilteredActivities();
+    });
+  });
 
   // Open registration modal
   function openRegistrationModal(activityName) {
