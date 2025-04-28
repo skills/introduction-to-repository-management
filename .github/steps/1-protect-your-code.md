@@ -8,20 +8,64 @@ Principal Martinez was so impressed with your work that they announced at the la
 
 When more teachers start helping with the Mergington High activities website, it's important to add some safeguards. Thankfully, GitHub provides several ways to protect your repository:
 
+1. **Repository Rulesets** - These provide safeguards to limit:
+
+   - Pushing code directly to important branches
+   - Deleting or renaming branches
+   - Force pushing (which can overwrite history)
+   - (and much more)
+
 1. **`.gitignore`** - This special file tells Git which files it should NOT track, like:
 
    - Temporary files that your code creates while running
    - Secret configuration files with sensitive information
    - System files that other developers don't need
 
-2. **Repository Rulesets** - These provide safeguards to limit:
-   - Pushing code directly to important branches
-   - Deleting or renaming branches
-   - Force pushing (which can overwrite history)
-   - (and much more)
-
 > [!TIP]
 > Think of these settings like the editorial process of a school yearbook. Various student committees will take photos and write articles, then the yearbook president will make adjustments to make sure everything flows together properly. Finally, a teacher/advisor will sign off that all content is appropriate.
+
+## ⌨️ Activity: Add a branch ruleset
+
+Now let's add some protections so that no one accidentally breaks the club registration system:
+
+1. In the top navigation, select the **Settings** tab.
+
+1. In the left navigation, expand the **Rules** area and select **Rulesets**.
+
+1. Click the **New ruleset** dropdown and select **New branch ruleset**.
+
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/1e9fd519-1421-4d6b-b654-a3fe53a8fb75" />
+
+1. Set the **Ruleset Name** as `Protect main` and change the **Enforcement status** to `Active`.
+
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/ce30fd34-39b5-4e22-b348-4af61fd05cd1" />
+
+1. Locate the the **Targets** section. Use the **Add target** dropdown to add 2 entries:
+
+   1. Add the **Include default branch** option to ensure protections aren't bypassed by switching the default branch.
+
+      <img width="300" alt="image" src="https://github.com/user-attachments/assets/217263cc-d5c2-4ac0-b03c-a72494e5c812" />
+
+   1. Use the **include by pattern** option and enter the pattern `main`.
+
+      <img width="300" alt="image" src="https://github.com/user-attachments/assets/47a835de-62dc-4f34-96d8-c2562f03af1a" />
+
+      <img width="300" alt="image" src="https://github.com/user-attachments/assets/ddc52767-d93e-4c9e-a77a-90c3b5c08fb5" />
+
+1. Locate the **Rules** section. Ensure the following items are checked.
+   - [x] Restrict deletions
+   - [x] Require a pull request before merging
+     - Required approvals: `1`
+     - [x] Require review from Code Owners (explained in next step)
+   - [x] Require status checks to pass before merging
+
+### What to learn more?
+
+Here are some useful links to learn more about some of the features you may have discovered while do this step.
+
+- [Ignoring files](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files)
+- [About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches)
+- [Managing a branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule)
 
 ## ⌨️ Activity: Create a `.gitignore` file
 
@@ -76,45 +120,4 @@ Let's start by making sure we don't accidentally commit files:
 
 1. Enter `prepare-to-collaborate` for the branch name then click the **Propose changes** button.
 
-## ⌨️ Activity: Add a branch ruleset
-
-Now let's add some protections so that no one accidentally breaks the club registration system:
-
-1. In the top navigation, select the **Settings** tab.
-
-1. In the left navigation, expand the **Rules** area and select **Rulesets**.
-
-1. Click the **New ruleset** dropdown and select **New branch ruleset**.
-
-   <img width="350" alt="image" src="https://github.com/user-attachments/assets/1e9fd519-1421-4d6b-b654-a3fe53a8fb75" />
-
-1. Set the **Ruleset Name** as `Protect main` and change the **Enforcement status** to `Active`.
-
-   <img width="350" alt="image" src="https://github.com/user-attachments/assets/ce30fd34-39b5-4e22-b348-4af61fd05cd1" />
-
-1. Locate the the **Targets** section. Use the **Add target** dropdown to add 2 entries:
-
-   1. Add the **Include default branch** option to ensure protections aren't bypassed by switching the default branch.
-
-      <img width="300" alt="image" src="https://github.com/user-attachments/assets/217263cc-d5c2-4ac0-b03c-a72494e5c812" />
-
-   1. Use the **include by pattern** option and enter the pattern `main`.
-
-      <img width="300" alt="image" src="https://github.com/user-attachments/assets/47a835de-62dc-4f34-96d8-c2562f03af1a" />
-
-      <img width="300" alt="image" src="https://github.com/user-attachments/assets/ddc52767-d93e-4c9e-a77a-90c3b5c08fb5" />
-
-1. Locate the **Rules** section. Ensure the following items are checked.
-   - [x] Restrict deletions
-   - [x] Require a pull request before merging
-     - Required approvals: `1`
-     - [x] Require review from Code Owners (explained in next step)
-   - [x] Require status checks to pass before merging
-
-### What to learn more?
-
-Here are some useful links to learn more about some of the features you may have discovered while do this step.
-
-- [Ignoring files](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files)
-- [About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches)
-- [Managing a branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule)
+1. With the file committed, wait a moment for Mona to check your work, provide feedback, and share the next lesson.
