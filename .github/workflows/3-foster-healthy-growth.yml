@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - add-issue-templates
+      - prepare-to-collaborate
     paths:
       - ".github/ISSUE_TEMPLATE/**"
       - "CODE_OF_CONDUCT.md"
@@ -31,8 +32,17 @@ jobs:
       ISSUE_URL: ${{ needs.find_exercise.outputs.issue-url }}
 
     steps:
-      - name: Checkout
+      - name: Checkout branch - prepare-to-collaborate
         uses: actions/checkout@v4
+        with:
+          path: prepare-to-collaborate
+          ref: prepare-to-collaborate
+
+      - name: Checkout branch - add-issue-templates
+        uses: actions/checkout@v4
+        with:
+          path: add-issue-templates
+          ref: add-issue-templates
 
       - name: Get Exercise Toolkit
         uses: actions/checkout@v4
@@ -66,7 +76,7 @@ jobs:
             }
 
             // Check that file exists
-            if (!fs.existsSync('CODE_OF_CONDUCT.md')) {
+            if (!fs.existsSync('prepare-to-collaborate/CODE_OF_CONDUCT.md')) {
               result.passed = false;
               result.message = 'File is missing.';
             }
@@ -88,7 +98,7 @@ jobs:
             }
 
             // Check that file exists
-            if (!fs.existsSync('.github/ISSUE_TEMPLATE/bug_report.md')) {
+            if (!fs.existsSync('add-issue-templates/.github/ISSUE_TEMPLATE/bug_report.md')) {
               result.passed = false;
               result.message = 'File is missing.';
             }
@@ -111,7 +121,7 @@ jobs:
             }
 
             // Check that file exists
-            if (!fs.existsSync('.github/ISSUE_TEMPLATE/feature_request.md')) {
+            if (!fs.existsSync('add-issue-templates/.github/ISSUE_TEMPLATE/feature_request.md')) {
               result.passed = false;
               result.message = 'File is missing.';
             }
