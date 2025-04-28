@@ -60,6 +60,38 @@
               </button>
             </div>
           </div>
+
+          <!-- Day Filter -->
+          <div class="filter-container day-filter-container">
+            <div class="filter-label">Filter by day:</div>
+            <div class="day-filters" id="day-filters">
+              <button class="day-filter active" data-day="">All Days</button>
+              <button class="day-filter" data-day="Monday">Monday</button>
+              <button class="day-filter" data-day="Tuesday">Tuesday</button>
+              <button class="day-filter" data-day="Wednesday">Wednesday</button>
+              <button class="day-filter" data-day="Thursday">Thursday</button>
+              <button class="day-filter" data-day="Friday">Friday</button>
+              <button class="day-filter" data-day="Saturday">Saturday</button>
+              <button class="day-filter" data-day="Sunday">Sunday</button>
+            </div>
+          </div>
+
+          <!-- Time Filter -->
+          <div class="filter-container time-filter-container">
+            <div class="filter-label">Filter by time:</div>
+            <div class="time-filters">
+              <select id="time-filter">
+                <option value="">All Times</option>
+                <option value="morning">
+                  Before School (6:00 AM - 8:00 AM)
+                </option>
+                <option value="afternoon">
+                  After School (3:00 PM - 6:00 PM)
+                </option>
+                <option value="weekend">Weekend</option>
+              </select>
+            </div>
+          </div>
         </div>
 
         <div id="activities-list">

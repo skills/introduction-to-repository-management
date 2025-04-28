@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("activity-search");
   const searchButton = document.getElementById("search-button");
   const categoryFilters = document.querySelectorAll(".category-filter");
+  const dayFilters = document.querySelectorAll(".day-filter");
+  const timeFilter = document.getElementById("time-filter");
 
   // Authentication elements
   const loginButton = document.getElementById("login-button");
@@ -36,9 +38,18 @@ document.addEventListener("DOMContentLoaded", () => {
   let allActivities = {};
   let currentFilter = "all";
   let searchQuery = "";
+  let currentDay = "";
+  let currentTimeRange = "";
 
   // Authentication state
   let currentUser = null;
+
+  // Time range mappings for the dropdown
+  const timeRanges = {
+    morning: { start: "06:00", end: "08:00" }, // Before school hours
+    afternoon: { start: "15:00", end: "18:00" }, // After school hours
+    weekend: { days: ["Saturday", "Sunday"] }, // Weekend days
+  };
 
   // Check if user is already logged in (from localStorage)
   function checkAuthentication() {
@@ -220,6 +231,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Format schedule for display - handles both old and new format
+  function formatSchedule(details) {
+    // If schedule_details is available, use the structured data
+    if (details.schedule_details) {
+      const days = details.schedule_details.days.join(", ");
+
+      // Convert 24h time format to 12h AM/PM format for display
+      const formatTime = (time24) => {
+        const [hours, minutes] = time24.split(":").map((num) => parseInt(num));
+        const period = hours >= 12 ? "PM" : "AM";
+        const displayHours = hours % 12 || 12; // Convert 0 to 12 for 12 AM
+        return `${displayHours}:${minutes
+          .toString()
+          .padStart(2, "0")} ${period}`;
+      };
+
+      const startTime = formatTime(details.schedule_details.start_time);
+      const endTime = formatTime(details.schedule_details.end_time);
+
+      return `${days}, ${startTime} - ${endTime}`;
+    }
+
+    // Fallback to the string format if schedule_details isn't available
+    return details.schedule;
+  }
+
   // Function to determine activity type (this would ideally come from backend)
   function getActivityType(activityName, description) {
     const name = activityName.toLowerCase();
@@ -229,6 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
       name.includes("soccer") ||
       name.includes("basketball") ||
       name.includes("sport") ||
+      name.includes("fitness") ||
       desc.includes("team") ||
       desc.includes("game") ||
       desc.includes("athletic")
@@ -248,8 +286,10 @@ document.addEventListener("DOMContentLoaded", () => {
       name.includes("math") ||
       name.includes("academic") ||
       name.includes("study") ||
+      name.includes("olympiad") ||
       desc.includes("learning") ||
-      desc.includes("education")
+      desc.includes("education") ||
+      desc.includes("competition")
     ) {
       return "academic";
     } else if (
@@ -263,9 +303,11 @@ document.addEventListener("DOMContentLoaded", () => {
       name.includes("computer") ||
       name.includes("coding") ||
       name.includes("tech") ||
+      name.includes("robotics") ||
       desc.includes("programming") ||
       desc.includes("technology") ||
-      desc.includes("digital")
+      desc.includes("digital") ||
+      desc.includes("robot")
     ) {
       return "technology";
     }
@@ -274,19 +316,44 @@ document.addEventListener("DOMContentLoaded", () => {
     return "academic";
   }
 
-  // Function to fetch activities from API
+  // Function to fetch activities from API with optional day and time filters
   async function fetchActivities() {
     // Show loading skeletons first
     showLoadingSkeletons();
 
     try {
-      const response = await fetch("/activities");
+      // Build query string with filters if they exist
+      let queryParams = [];
+
+      // Handle day filter
+      if (currentDay) {
+        queryParams.push(`day=${encodeURIComponent(currentDay)}`);
+      }
+
+      // Handle time range filter
+      if (currentTimeRange) {
+        const range = timeRanges[currentTimeRange];
+
+        // Handle weekend special case
+        if (currentTimeRange === "weekend") {
+          // Don't add time parameters for weekend filter
+          // Weekend filtering will be handled on the client side
+        } else if (range) {
+          // Add time parameters for before/after school
+          queryParams.push(`start_time=${encodeURIComponent(range.start)}`);
+          queryParams.push(`end_time=${encodeURIComponent(range.end)}`);
+        }
+      }
+
+      const queryString =
+        queryParams.length > 0 ? `?${queryParams.join("&")}` : "";
+      const response = await fetch(`/activities${queryString}`);
       const activities = await response.json();
 
       // Save the activities data
       allActivities = activities;
 
-      // Apply search and filter
+      // Apply search and filter, and handle weekend filter in client
       displayFilteredActivities();
     } catch (error) {
       activitiesList.innerHTML =
@@ -300,12 +367,46 @@ document.addEventListener("DOMContentLoaded", () => {
     // Clear the activities list
     activitiesList.innerHTML = "";
 
-    // Filter activities based on current filter and search query
-    const filteredActivities = filterActivities(
-      allActivities,
-      currentFilter,
-      searchQuery
-    );
+    // Apply client-side filtering - this handles category filter and search, plus weekend filter
+    let filteredActivities = {};
+
+    Object.entries(allActivities).forEach(([name, details]) => {
+      const activityType = getActivityType(name, details.description);
+
+      // Apply category filter
+      if (currentFilter !== "all" && activityType !== currentFilter) {
+        return;
+      }
+
+      // Apply weekend filter if selected
+      if (currentTimeRange === "weekend" && details.schedule_details) {
+        const activityDays = details.schedule_details.days;
+        const isWeekendActivity = activityDays.some((day) =>
+          timeRanges.weekend.days.includes(day)
+        );
+
+        if (!isWeekendActivity) {
+          return;
+        }
+      }
+
+      // Apply search filter
+      const searchableContent = [
+        name.toLowerCase(),
+        details.description.toLowerCase(),
+        formatSchedule(details).toLowerCase(),
+      ].join(" ");
+
+      if (
+        searchQuery &&
+        !searchableContent.includes(searchQuery.toLowerCase())
+      ) {
+        return;
+      }
+
+      // Activity passed all filters, add to filtered list
+      filteredActivities[name] = details;
+    });
 
     // Check if there are any results
     if (Object.keys(filteredActivities).length === 0) {
@@ -322,32 +423,6 @@ document.addEventListener("DOMContentLoaded", () => {
     Object.entries(filteredActivities).forEach(([name, details]) => {
       renderActivityCard(name, details);
     });
-  }
-
-  // Function to filter activities based on category and search query
-  function filterActivities(activities, categoryFilter, query) {
-    // Clone the activities object to avoid modifying the original
-    const filtered = {};
-
-    Object.entries(activities).forEach(([name, details]) => {
-      const activityType = getActivityType(name, details.description);
-      const matchesCategory =
-        categoryFilter === "all" || activityType === categoryFilter;
-
-      // Check if activity matches search query (case insensitive)
-      const matchesQuery =
-        query === "" ||
-        name.toLowerCase().includes(query.toLowerCase()) ||
-        details.description.toLowerCase().includes(query.toLowerCase()) ||
-        details.schedule.toLowerCase().includes(query.toLowerCase());
-
-      // Add to filtered activities if it matches both category and search
-      if (matchesCategory && matchesQuery) {
-        filtered[name] = details;
-      }
-    });
-
-    return filtered;
   }
 
   // Function to render a single activity card
@@ -374,6 +449,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const activityType = getActivityType(name, details.description);
     const typeInfo = activityTypes[activityType];
 
+    // Format the schedule using the new helper function
+    const formattedSchedule = formatSchedule(details);
+
     // Create activity tag
     const tagHtml = `
       <span class="activity-tag" style="background-color: ${typeInfo.color}; color: ${typeInfo.textColor}">
@@ -399,7 +477,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <h4>${name}</h4>
       <p>${details.description}</p>
       <p class="tooltip">
-        <strong>Schedule:</strong> ${details.schedule}
+        <strong>Schedule:</strong> ${formattedSchedule}
         <span class="tooltip-text">Regular meetings at this time throughout the semester</span>
       </p>
       ${capacityIndicator}
@@ -482,6 +560,25 @@ document.addEventListener("DOMContentLoaded", () => {
       currentFilter = button.dataset.category;
       displayFilteredActivities();
     });
+  });
+
+  // Add event listeners to day filter buttons
+  dayFilters.forEach((button) => {
+    button.addEventListener("click", () => {
+      // Update active class
+      dayFilters.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      // Update current day filter and fetch activities
+      currentDay = button.dataset.day;
+      fetchActivities();
+    });
+  });
+
+  // Add event listener to time filter dropdown
+  timeFilter.addEventListener("change", () => {
+    currentTimeRange = timeFilter.value;
+    fetchActivities();
   });
 
   // Open registration modal
@@ -697,6 +794,12 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error signing up:", error);
     }
   });
+
+  // Expose filter functions to window for future UI control
+  window.activityFilters = {
+    setDayFilter,
+    setTimeRangeFilter,
+  };
 
   // Initialize app
   checkAuthentication();

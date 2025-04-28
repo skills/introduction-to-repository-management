@@ -4,7 +4,7 @@ Endpoints for the High School Management System API
 
 from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import RedirectResponse
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 
 from ..database import activities_collection, teachers_collection
 
@@ -14,13 +14,53 @@ router = APIRouter(
 )
 
 @router.get("/", response_model=Dict[str, Any])
-def get_activities() -> Dict[str, Any]:
-    """Get all activities with their details"""
+def get_activities(
+    day: Optional[str] = None,
+    start_time: Optional[str] = None,
+    end_time: Optional[str] = None
+) -> Dict[str, Any]:
+    """
+    Get all activities with their details, with optional filtering by day and time
+    
+    - day: Filter activities occurring on this day (e.g., 'Monday', 'Tuesday')
+    - start_time: Filter activities starting at or after this time (24-hour format, e.g., '14:30')
+    - end_time: Filter activities ending at or before this time (24-hour format, e.g., '17:00')
+    """
+    # Build the query based on provided filters
+    query = {}
+    
+    if day:
+        query["schedule_details.days"] = {"$in": [day]}
+    
+    if start_time:
+        query["schedule_details.start_time"] = {"$gte": start_time}
+    
+    if end_time:
+        query["schedule_details.end_time"] = {"$lte": end_time}
+    
+    # Query the database
     activities = {}
-    for activity in activities_collection.find():
+    for activity in activities_collection.find(query):
         name = activity.pop('_id')
         activities[name] = activity
+    
     return activities
+
+@router.get("/days", response_model=List[str])
+def get_available_days() -> List[str]:
+    """Get a list of all days that have activities scheduled"""
+    # Aggregate to get unique days across all activities
+    pipeline = [
+        {"$unwind": "$schedule_details.days"},
+        {"$group": {"_id": "$schedule_details.days"}},
+        {"$sort": {"_id": 1}}  # Sort days alphabetically
+    ]
+    
+    days = []
+    for day_doc in activities_collection.aggregate(pipeline):
+        days.append(day_doc["_id"])
+    
+    return days
 
 @router.post("/{activity_name}/signup")
 def signup_for_activity(activity_name: str, email: str, teacher_username: Optional[str] = Query(None)):
