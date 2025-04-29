@@ -43,7 +43,7 @@ Let's configure Dependabot to use default settings and automatically combine fix
 
    <img width="500" alt="image" src="https://github.com/user-attachments/assets/0bc90e67-4b71-4780-8272-20dc0fff5c4c" />
 
-1. In the top right, use the **Commit changes...** button to save your changes.
+1. In the top right, use the **Commit changes...** button and commit your changes directly to `prepare-to-collaborate` branch
 
 ## ⌨️ Activity: Detect dangerous patterns with code scanning
 
@@ -111,6 +111,6 @@ Now that the automated options are ready, let's create a guide for real-life hum
    Responsible disclosure of security vulnerabilities helps protect our entire school community.
    ```
 
-1. In the top right, use the **Commit changes...** button to save your changes.
+1. In the top right, use the **Commit changes...** button and commit your changes directly to `prepare-to-collaborate` branch
 
 1. With the files committed, wait a moment for Mona to check your work, provide feedback, and share the next lesson.
