@@ -88,7 +88,7 @@ The IT Club meeting is tomorrow, and you need to prepare for Ms. Rodriguez and M
    - For other general problems, email the tech team at techclub@mergingtonhigh.example.edu
    ```
 
-1. In the top right, use the **Commit changes...** button to save your changes.
+1. In the top right, use the **Commit changes...** button and commit your changes directly to `prepare-to-collaborate` branch
 
 ## ⌨️ Activity: Assign code ownership
 
