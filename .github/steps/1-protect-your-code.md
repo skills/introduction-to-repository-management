@@ -107,6 +107,7 @@ To get started, let's add some protections so that no one accidentally breaks th
    - [x] Require a pull request before merging
      - Required approvals: `0`
      - [x] Require review from Code Owners
+   - [x] Block force pushes
 
 1. Scroll to the bottom and click the **Create** button to save the ruleset.
 
@@ -114,7 +115,7 @@ To get started, let's add some protections so that no one accidentally breaks th
 
 We know many teachers use different tools, so let's make sure they don't accidentally commit unnecessary files.
 
-1. If you are not at your repository, return to the **Code** tab ane make sure you are on the `main` branch.
+1. At the top navigation, return to the **Code** tab ane verify you are on the `main` branch.
 
 1. Above the list of files, click the **Add file** dropdown and select **Create new file**.
 
@@ -155,7 +156,9 @@ We know many teachers use different tools, so let's make sure they don't acciden
 
    <img width="400" alt="image" src="https://github.com/user-attachments/assets/4e85948d-75c8-4c13-8ddd-4707bf9b0805" />
 
-1. Enter `prepare-to-collaborate` for the branch name then click the **Propose changes** button and **Create pull request**. You can ignore the newly created pull request for now.
+1. Enter `prepare-to-collaborate` for the branch name then click the **Propose changes** button. You will be forwarded to a new page to start a new pull request.
+
+1. Set the title to `Prepare to collaborate` and click the **Create pull request** button. **Do NOT merge yet**, since we will be adding more collaboration related changes.
 
 1. With the file committed, wait a moment for Mona to check your work, provide feedback, and share the next lesson.
 

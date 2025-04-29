@@ -27,18 +27,15 @@ To help with collaboration, GitHub provides two special files:
 
    - When someone creates a pull request, GitHub will automatically ask the right person to review it.
 
-
-
 ## ⌨️ Activity: Create a welcoming contribution guide
 
 The IT Club meeting is tomorrow, and you need to prepare for Ms. Rodriguez and Mr. Chen to join the project. Let's start a document to help them contribute effectively.
 
-1. If you are not at your repository, return to the **Code** tab. Ensure you you are on the `prepare-to-collaborate` branch at the root directory.
+1. At the top navigation, return to the **Code** tab. Ensure you are on the `prepare-to-collaborate` branch.
 
    <img width="265" alt="image showing the correct branch" src="https://github.com/user-attachments/assets/bd12d0cc-0920-4158-9e96-e3a8fb994c1a" />
 
-
-1. In the top directory, create a new file called `CONTRIBUTING.md`.
+1. In the top directory, create a new file called `CONTRIBUTING.md` (case sensitive).
 
 1. Add a welcoming message.
 
@@ -50,7 +47,7 @@ The IT Club meeting is tomorrow, and you need to prepare for Ms. Rodriguez and M
    new features, this guide will help you get started. 🎉
    ```
 
-1. Add instructions to help them quickly start developing.
+1. Add instructions to help teachers quickly start developing.
 
    ```md
    ## Development Setup
@@ -88,19 +85,15 @@ The IT Club meeting is tomorrow, and you need to prepare for Ms. Rodriguez and M
    - For other general problems, email the tech team at techclub@mergingtonhigh.example.edu
    ```
 
-1. In the top right, use the **Commit changes...** button and commit your changes directly to `prepare-to-collaborate` branch
+1. In the top right, use the **Commit changes...** button and commit your changes directly to `prepare-to-collaborate` branch.
 
 ## ⌨️ Activity: Assign code ownership
 
 With others joining the fun, you want to stay involved on anything affecting architecture and core functionality. Let's assign you to the related files.
 
-1. Ensure you you are on the `prepare-to-collaborate` branch at the root directory.
+1. At the top navigation, return to the **Code** tab. Ensure you are on the `prepare-to-collaborate` branch.
 
-1. Above the list of files, click the **Add file** dropdown and select **Create new file**.
-
-   <img width="300" alt="New file button" src="https://github.com/user-attachments/assets/8f3f8da8-1471-485a-9df5-8c03ecba2d8e"/>
-
-1. Set the file name as `CODEOWNERS`, without an file extension.
+1. In the top directory, create a new file called `CODEOWNERS` (case sensitive and no extension).
 
 1. Add the following content:
 
@@ -114,7 +107,7 @@ With others joining the fun, you want to stay involved on anything affecting arc
    /src/static/   @{{ login }}
    ```
 
-1. In the top right, use the **Commit changes...** button to save your changes.
+1. In the top right, use the **Commit changes...** button and commit your changes directly to `prepare-to-collaborate` branch.
 
 1. With the files committed, wait a moment for Mona to check your work, provide feedback, and share the next lesson.
 

@@ -31,7 +31,7 @@ Let's configure Dependabot to use default settings and automatically combine fix
    - **Grouped security updates**: `enabled`
    - **Dependabot on Actions runners**: `enabled`
 
-1. Find **Dependabot version updates** and click the **Enable** button. This will open an editor to save the settings.
+1. Find **Dependabot version updates** and click the **Enable** button. This will open an editor to create a configuration file.
 
    <img width="350" alt="image" src="https://github.com/user-attachments/assets/a4d7ae19-0439-4b78-bcbf-9fce5c5410ff" />
 
@@ -43,7 +43,7 @@ Let's configure Dependabot to use default settings and automatically combine fix
 
    <img width="500" alt="image" src="https://github.com/user-attachments/assets/0bc90e67-4b71-4780-8272-20dc0fff5c4c" />
 
-1. In the top right, use the **Commit changes...** button and commit your changes directly to `prepare-to-collaborate` branch
+1. In the top right, use the **Commit changes...** button and commit your changes directly to `prepare-to-collaborate` branch.
 
 ## ⌨️ Activity: Detect dangerous patterns with code scanning
 
@@ -52,7 +52,9 @@ None of us at the high school are professional software developers. Let's enable
 > [!TIP]
 > Want to learn more about code scanning and writing custom queries? Check out the [Introduction to CodeQL](https://github.com/skills/introduction-to-codeql) Skills exercise after you finish this one!
 
-1. If necessary, return to the **Code Security** page in your repository settings.
+1. In the top navigation, select the **Settings** tab.
+
+1. In the left navigation, select **Code Security**.
 
 1. Find the **Code scanning** section. Click the **Set up** button and select the **Default** option to open a configuration panel.
 
@@ -70,15 +72,9 @@ None of us at the high school are professional software developers. Let's enable
 
 Now that the automated options are ready, let's create a guide for real-life humans to report any security vulnerabilities they find in a safe way.
 
-1. In your repository, navigate back to the **Code** tab.
+1. At the top navigation, return to the **Code** tab. Ensure you are on the `prepare-to-collaborate` branch.
 
-1. Ensure you you are on the `prepare-to-collaborate` branch at the root directory.
-
-1. Above the list of files, click the **Add file** dropdown and select **Create new file**.
-
-   <img width="300" alt="New file button" src="https://github.com/user-attachments/assets/8f3f8da8-1471-485a-9df5-8c03ecba2d8e"/>
-
-1. Set the file name as `SECURITY.md`.
+1. In the top directory, create a new file called `SECURITY.md` (case sensitive).
 
 1. Add the following content:
 
@@ -111,6 +107,6 @@ Now that the automated options are ready, let's create a guide for real-life hum
    Responsible disclosure of security vulnerabilities helps protect our entire school community.
    ```
 
-1. In the top right, use the **Commit changes...** button and commit your changes directly to `prepare-to-collaborate` branch
+1. In the top right, use the **Commit changes...** button and commit your changes directly to `prepare-to-collaborate` branch.
 
 1. With the files committed, wait a moment for Mona to check your work, provide feedback, and share the next lesson.

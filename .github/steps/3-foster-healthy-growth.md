@@ -17,13 +17,9 @@ Let's start by establishing some community guidelines for your growing team of t
 > [!TIP]
 > The [Contributor Covenant](https://www.contributor-covenant.org/) is a popular code of conduct used by many projects.
 
-1. Ensure you you are on the `prepare-to-collaborate` branch at the root directory.
+1. At the top navigation, return to the **Code** tab. Ensure you are on the `prepare-to-collaborate` branch.
 
-1. Above the list of files, click the **Add file** dropdown and select **Create new file**.
-
-   <img width="300" alt="New file button" src="https://github.com/user-attachments/assets/8f3f8da8-1471-485a-9df5-8c03ecba2d8e"/>
-
-1. Set the file name as `CODE_OF_CONDUCT.md`.
+1. In the top directory, create a new file called `CODE_OF_CONDUCT.md` (case sensitive).
 
 1. Add the following content:
 
@@ -88,7 +84,7 @@ Let's start by establishing some community guidelines for your growing team of t
    version 1.4, available at [https://www.contributor-covenant.org/version/1/4/code-of-conduct.html](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html)
    ```
 
-1. In the top right, use the **Commit changes...** button and commit your changes directly to `prepare-to-collaborate` branch
+1. In the top right, use the **Commit changes...** button and commit your changes directly to `prepare-to-collaborate` branch.
 
 ## ⌨️ Activity: Communicate easier with issue templates
 
@@ -125,7 +121,7 @@ Now let's create templates so other teachers can report bugs or request features
 
    <img width="350" alt="image" src="https://github.com/user-attachments/assets/2ecc056d-924c-4e9e-9cac-8e255a7a7ecd" />
 
-1. With our templates prepared, let's commit them. In the top right, click the **Propose changes** button. Enter a description and set the branch to `add-issue-templates`, then click **Commit changes**.
+1. With our templates prepared, let's commit them. In the top right, click the **Propose changes** button. Enter a description and set the branch to `add-issue-templates`, then click **Commit changes**. You can ignore the automatically created pull request.
 
    <img width="350" alt="image" src="https://github.com/user-attachments/assets/8d21d225-1798-4da2-9b93-dc337a34047c" />
 
