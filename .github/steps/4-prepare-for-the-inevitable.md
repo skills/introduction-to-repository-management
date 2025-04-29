@@ -58,11 +58,11 @@ None of us at the high school are professional software developers. Let's enable
 
 1. Find the **Code scanning** section. Click the **Set up** button and select the **Default** option to open a configuration panel.
 
-   <img width="350" alt="image" src="https://github.com/user-attachments/assets/5ba119da-1fa2-4e16-b86c-05475e949f73" />
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/5b3a89e5-c71a-44d9-b917-d1a21dc52181" />
 
 1. Click the **Enable CodeQL** button to accept the default configuration.
 
-   <img width="350" alt="image" src="https://github.com/user-attachments/assets/30e90cb2-e6f9-4173-8522-18193fef0b81" />
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/b6491c72-61e4-466a-953f-99de346b053d" />
 
 1. Below the **Tools** section. Verify **Copilot Autofix** is set to `On`.
 
