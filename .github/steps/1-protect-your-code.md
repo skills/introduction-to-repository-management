@@ -77,9 +77,7 @@ In other exercise, we have been developing the Extracurricular activities websit
 
 To get started, let's add some protections so that no one accidentally breaks the club registration system.
 
-1. If necessary, open another tab and navigate to this repository. We will start on the **Code** tab.
-
-1. In the top navigation, select the **Settings** tab.
+1. If necessary, open another tab and navigate to this repository. We will start on the **Settings** tab.
 
 1. In the left navigation, expand the **Rules** area and select **Rulesets**.
 
@@ -161,9 +159,16 @@ We know many teachers use different tools, so let's make sure they don't acciden
 
    <img width="400" alt="image" src="https://github.com/user-attachments/assets/4e85948d-75c8-4c13-8ddd-4707bf9b0805" />
 
-1. Enter `prepare-to-collaborate` for the branch name then click the **Propose changes** button. You can ignore the newly created pull request for now.
+1. Enter `prepare-to-collaborate` for the branch name then click the **Propose changes** button and **Create pull request**. You can ignore the newly created pull request for now.
 
 1. With the file committed, wait a moment for Mona to check your work, provide feedback, and share the next lesson.
 
 > [!TIP]
 > GitHub and the community have built a repository with [sample `.gitignore` files](https://github.com/github/gitignore) for many situations. Make sure to check it out!
+
+<details>
+<summary>🤷 Having trouble?</summary><br/>
+
+Make sure you pushed the `.gitignore` file to `prepare-to-collaborate` branch. Exact naming for both matters!
+
+</details>
