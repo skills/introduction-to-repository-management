@@ -97,33 +97,33 @@ Now let's create templates so other teachers can report bugs or request features
 
 1. Find the **Features** section and verify **Issues** is enabled.
 
-   <img width="350" alt="" src="https://github.com/user-attachments/assets/d0fbd22c-89d5-42eb-b976-485b8ac0521d" />
+   <img width="350" alt="" src="https://github.com/user-attachments/assets/dafb976b-4b8c-4c5e-8989-04d3e7bbe70d" />
 
 1. Click the **Set up templates** button to enter the issue templates editor.
 
-   <img width="350" alt="image" src="https://github.com/user-attachments/assets/a4d0947b-af11-4187-b12e-b60def929c11" />
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/bd94af1e-d564-472f-a435-f12fa1bf3b5c" />
 
 1. Click the **Add template** dropdown and select **Bug report**.
 
-   <img width="350" alt="" src="https://github.com/user-attachments/assets/085f33d7-e3f3-4c0a-a521-568b72759710" />
+   <img width="350" alt="" src="https://github.com/user-attachments/assets/baee263d-b233-4029-b629-9544eacf1e27" />
 
 1. Click the **Preview and edit** button to show the current template. Click the **Edit icon** (pencil) to make the fields editable.
 
-   <img width="350" alt="image" src="https://github.com/user-attachments/assets/535dcb30-2bae-4f4e-a162-08871686d138" /><br/>
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/1c8500f7-10b2-406b-9385-d5b9480e2f71" /><br/>
 
-   <img width="350" alt="image" src="https://github.com/user-attachments/assets/b3bf2629-cfd2-4e3f-b25d-ad79b620d192" /><br/>
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/77e312e2-af3c-4015-94f0-b1cf7409cc40" /><br/>
 
-   <img width="700" alt="image" src="https://github.com/user-attachments/assets/c0e4683b-5cca-48c3-9067-c110d0d01479" />
+   <img width="700" alt="image" src="https://github.com/user-attachments/assets/c2aecd6e-d021-4149-b088-7cbf883a7e33" />
 
 1. (Optional) Let's keep it simple for our students and fellow teachers. Remove the sections about Desktop and Smartphone details.
 
 1. Repeat the above steps for the "Feature request" template.
 
-   <img width="350" alt="image" src="https://github.com/user-attachments/assets/2ecc056d-924c-4e9e-9cac-8e255a7a7ecd" />
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/6456e261-fcd8-4845-b1ab-f2c2d5883c77" />
 
 1. With our templates prepared, let's commit them. In the top right, click the **Propose changes** button. Enter a description and set the branch to `add-issue-templates`, then click **Commit changes**. You can ignore the automatically created pull request.
 
-   <img width="350" alt="image" src="https://github.com/user-attachments/assets/8d21d225-1798-4da2-9b93-dc337a34047c" />
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/a00a3740-ce0c-430c-9541-e56b7d9b45d6" />
 
 1. With the files committed, wait a moment for Mona to check your work, provide feedback, and share the next lesson.
 
