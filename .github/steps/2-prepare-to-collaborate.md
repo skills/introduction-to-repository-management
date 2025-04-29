@@ -35,6 +35,9 @@ The IT Club meeting is tomorrow, and you need to prepare for Ms. Rodriguez and M
 
 1. If you are not at your repository, return to the **Code** tab. Ensure you you are on the `prepare-to-collaborate` branch at the root directory.
 
+   <img width="265" alt="image showing the correct branch" src="https://github.com/user-attachments/assets/bd12d0cc-0920-4158-9e96-e3a8fb994c1a" />
+
+
 1. In the top directory, create a new file called `CONTRIBUTING.md`.
 
 1. Add a welcoming message.
