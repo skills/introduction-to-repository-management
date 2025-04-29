@@ -101,15 +101,11 @@ To get started, let's add some protections so that no one accidentally breaks th
 
       <img width="250" alt="image" src="https://github.com/user-attachments/assets/ddc52767-d93e-4c9e-a77a-90c3b5c08fb5" />
 
-1. Find the **Bypass list** section. Add the repository admin.
-
-   <img width="250" alt="image" src="https://github.com/user-attachments/assets/a7193e8e-a1d1-42b7-894a-1178b43f51c2" />
-
 1. Find the **Rules** section and ensure the following items are checked.
 
    - [x] Restrict deletions
    - [x] Require a pull request before merging
-     - Required approvals: `1`
+     - Required approvals: `0`
      - [x] Require review from Code Owners
 
 1. Scroll to the bottom and click the **Create** button to save the ruleset.
