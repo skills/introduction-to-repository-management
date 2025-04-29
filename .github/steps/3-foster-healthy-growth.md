@@ -88,7 +88,7 @@ Let's start by establishing some community guidelines for your growing team of t
    version 1.4, available at [https://www.contributor-covenant.org/version/1/4/code-of-conduct.html](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html)
    ```
 
-1. In the top right, use the **Commit changes...** button to save your changes.
+1. In the top right, use the **Commit changes...** button and commit your changes directly to `prepare-to-collaborate` branch
 
 ## ⌨️ Activity: Communicate easier with issue templates
 

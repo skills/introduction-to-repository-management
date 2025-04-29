@@ -7,7 +7,14 @@ Your simple school website has become quite popular! After showing it at the las
 
 While you're thrilled about their enthusiasm, you realize you need to set up some guidelines before letting them start changing code. The last thing you want is conflicting changes breaking the registration system right before spring break!
 
-Opening your project to other teachers at Mergington High means thinking about how everyone will work together without breaking each other's code. To help with collaboration, GitHub provides two special files:
+Opening your project to other teachers at Mergington High means thinking about how everyone will collaborate together without breaking each other's code.
+
+**Collaborators** are the people you have granted write access to the project through repository settings.
+
+- Provide other people permissions to change project files while still protecting repository settings.
+- Personal repositories have simple permissions. Organization repositories allow flexible permissions such as read, write, maintain, and admin.
+
+To help with collaboration, GitHub provides two special files:
 
 1. **`CONTRIBUTING.md` file** - A "How to Help" guide. Some example content:
 
@@ -16,20 +23,20 @@ Opening your project to other teachers at Mergington High means thinking about h
    - The project's coding style preference, to keep things consistent.
    - How to ask for help when stuck.
 
-2. **`CODEOWNERS` file** - Assign specific people or teams responsible for a portion of the project.
+1. **`CODEOWNERS` file** - Assign specific people or teams responsible for a portion of the project.
 
    - When someone creates a pull request, GitHub will automatically ask the right person to review it.
 
-3. **Collaborators** - Give other people access to the project through repository settings.
 
-   - Provide other people permissions to change project files while still protecting repository settings.
-   - Personal repositories have simple permissions. Organization repositories allow flexible permissions such as read, write, maintain, and admin.
 
 ## ⌨️ Activity: Create a welcoming contribution guide
 
 The IT Club meeting is tomorrow, and you need to prepare for Ms. Rodriguez and Mr. Chen to join the project. Let's start a document to help them contribute effectively.
 
 1. If you are not at your repository, return to the **Code** tab. Ensure you you are on the `prepare-to-collaborate` branch at the root directory.
+
+   <img width="265" alt="image showing the correct branch" src="https://github.com/user-attachments/assets/bd12d0cc-0920-4158-9e96-e3a8fb994c1a" />
+
 
 1. In the top directory, create a new file called `CONTRIBUTING.md`.
 
@@ -81,7 +88,7 @@ The IT Club meeting is tomorrow, and you need to prepare for Ms. Rodriguez and M
    - For other general problems, email the tech team at techclub@mergingtonhigh.example.edu
    ```
 
-1. In the top right, use the **Commit changes...** button to save your changes.
+1. In the top right, use the **Commit changes...** button and commit your changes directly to `prepare-to-collaborate` branch
 
 ## ⌨️ Activity: Assign code ownership
 
@@ -130,5 +137,5 @@ Ready to let your colleague start working on that photo gallery feature? Let's d
 
    <img width="350" alt="" src="https://github.com/user-attachments/assets/caf1a193-c9db-4962-b01e-66666ef54369" />
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Personal repositories only have one collaboration role type. A "collaborator" receives **write** permissions but NOT **admin** permissions. If you need finer permissions, consider starting a free [organization](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations) and assigning [repository roles](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization).
