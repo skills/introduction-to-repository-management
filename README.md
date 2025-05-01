@@ -9,6 +9,8 @@ _Learn the basics of several GitHub features that can help support a collaborati
 - **What you'll build**: You will prepare Mergington High School's extracurricular activities website repository so additional teachers can safely collaborate.
 - **Prerequisites**:
   - Skills exercise: [Introduction to GitHub](https://github.com/skills/introduction-to-github)
+  - Skills exercise: [Communicate using Markdown](https://github.com/skills/communicate-using-markdown)
+  - Skills exercise: [Review pull requests](https://github.com/skills/review-pull-requests)
 - **How long**: This exercise takes less than one hour to complete.
 
 In this exercise, you will:
