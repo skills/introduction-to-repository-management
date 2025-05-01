@@ -4,11 +4,11 @@ As you settle into the teachers' lounge with your coffee, you realize something:
 
 Every codebase, no matter how well-maintained, will eventually face security challenges. Let's try to proactively prepare for that day by configuring a few tools GitHub offers:
 
-1. **Dependabot** - Track and create alerts for vulnerabilities found in upstream code like our python and javascript libraries.
+1. **Dependabot** - Track and create alerts for vulnerabilities found in upstream dependencies used in your project. Automatically create pull requests to upgrade dependencies to safe versions.
 
-1. **Code Scanning** - Identify dangerous coding patterns that can cause vulnerabilities.
+1. **Code Scanning** - Analyze your repository's code to find security vulnerabilities and coding errors. Use GitHub Copilot Autofix to automatically suggest fixes for these alerts.
 
-1. **Security Policy** - A clear policy helps users know how to report security vulnerabilities responsibly. This prevents sensitive issues from being publicly disclosed before they're fixed.
+1. **Security Policy and Private vulnerability reporting** - Provide a guide and simple form for security researchers and end users to responsibly report vulnerabilities directly to the repository maintainer. This prevents sensitive issues from being publicly disclosed before they're fixed.
 
 > [!NOTE]
 > This is just a quick setup guide. For a more detailed setup of each service, we recommend the related GitHub Skills exercises and/or GitHub documentation.
@@ -35,9 +35,9 @@ Let's configure Dependabot to use default settings and automatically combine fix
 
    <img width="350" alt="image" src="https://github.com/user-attachments/assets/a4d7ae19-0439-4b78-bcbf-9fce5c5410ff" />
 
-1. In the left files list, at the top, change the branch to `prepare-to-collaborate`. Remember, our ruleset won't let us directly change files on `main`.
+1. In the left files list, at the top, click the **Expand file tree** button to show the list of files. At the top, change the branch to `prepare-to-collaborate`. Remember, our ruleset won't let us directly change files on `main`.
 
-   <img width="500" alt="image" src="https://github.com/user-attachments/assets/074db7d4-6088-4c5e-9a8b-158b651b345e" />
+   <img width="500" alt="image" src="https://github.com/user-attachments/assets/18a3cd1a-75ab-4e5e-a4c4-efd175d91ced" />
 
 1. Set the `package-ecosytem` to `pip` so Dependabot will automatically monitor our Python requirements.
 
@@ -72,11 +72,25 @@ None of us at the high school are professional software developers. Let's enable
 
 Now that the automated options are ready, let's create a guide for real-life humans to report any security vulnerabilities they find in a safe way.
 
-1. At the top navigation, return to the **Code** tab. Ensure you are on the `prepare-to-collaborate` branch.
+1. In the top navigation, select the **Settings** tab.
 
-1. In the top directory, create a new file called `SECURITY.md` (case sensitive).
+1. In the left navigation, select **Code Security**.
 
-1. Add the following content:
+1. Find the **Code Security** section. Verify the **Private vulnerability reporting** setting is `enabled`.
+
+1. At the top navigation, click the **Security** tab.
+
+1. In the left navigation, click the **Policy** option.
+
+1. Click the **Start setup** button. An editor will be started to create the file `SECURITY.md`.
+
+   <img width="350" alt="" src="https://github.com/user-attachments/assets/183b9fcc-1521-47fd-8165-b476a8ccb370"/><br/>
+
+   <img width="350" alt="" src="https://github.com/user-attachments/assets/36c272d1-bc4a-48c8-b234-56173a214cdb"/>
+
+1. In the left files list, at the top, click the **Expand file tree** button to show the list of files. At the top, change the branch to `prepare-to-collaborate`. Remember, our ruleset won't let us directly change files on `main`.
+
+1. We will ignore the provided template and instead use a recommendation from Mergington High School's IT department. Add the following content:
 
    ```markdown
    # Mergington High School Security Policy
@@ -86,20 +100,22 @@ Now that the automated options are ready, let's create a guide for real-life hum
    At Mergington High, we take the security of our Extra-Curricular Activities website seriously, especially
    since it contains student information. If you discover a security vulnerability, please follow these steps:
 
-   1. **Do not** disclose the vulnerability publicly or to other teachers/students
-   2. Email the IT Club faculty advisor at techsupport@mergingtonhigh.example.edu with details about the vulnerability
-   3. Include the following information:
+   1. **Do not** create an issue on this repository, disclose the vulnerability publicly, or discuss it with other teachers/students.
+   1. In the top navigation of this repository, click the **Security** tab.
+   1. In the top right, click the **Report a vulnerability** button.
+   1. Fill out the provided form. It will request information like:
       - A description of the vulnerability
       - Steps to reproduce the issue
       - Potential impact on student data or website functionality
       - Suggested fix (if you have one)
+   1. Email the IT Club faculty advisor at techsupport@mergingtonhigh.example.edu and inform them you have made a report. **Do not** include any vulnerability details.
 
    ## Response Timeline
 
    - We will acknowledge receipt of your report within 2 school days
    - We will provide an initial assessment within 5 school days
    - Critical issues affecting student data will be addressed immediately
-   - We will keep you informed about our progress in resolving the issue
+   - We will create a private fork to solve the issue and invite you as a collaborator so you can see our progress and contribute.
 
    ## Thank You
 
