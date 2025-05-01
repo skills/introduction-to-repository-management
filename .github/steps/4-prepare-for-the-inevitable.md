@@ -62,7 +62,7 @@ None of us at the high school are professional software developers. Let's enable
 
 1. Click the **Enable CodeQL** button to accept the default configuration.
 
-   <img width="350" alt="image" src="https://github.com/user-attachments/assets/b6491c72-61e4-466a-953f-99de346b053d" />
+   <img width="350" alt="image" src="https://github.com/user-attachments/assets/6d5f7164-d8ed-4b5d-bbcf-8aed9e7acc5d" />
 
 1. Below the **Tools** section. Verify **Copilot Autofix** is set to `On`.
 
