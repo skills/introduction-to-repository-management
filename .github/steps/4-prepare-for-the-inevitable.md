@@ -22,7 +22,7 @@ Let's configure Dependabot to use default settings and automatically combine fix
 
 1. In the top navigation, select the **Settings** tab.
 
-1. In the left navigation, select **Code Security**.
+1. In the left navigation, select **Advanced Security**.
 
 1. Find the **Dependabot** section. Verify or change the settings to match the following:
 
@@ -54,7 +54,7 @@ None of us at the high school are professional software developers. Let's enable
 
 1. In the top navigation, select the **Settings** tab.
 
-1. In the left navigation, select **Code Security**.
+1. In the left navigation, select **Advanced Security**.
 
 1. Find the **Code scanning** section. Click the **Set up** button and select the **Default** option to open a configuration panel.
 
@@ -74,9 +74,9 @@ Now that the automated options are ready, let's create a guide for real-life hum
 
 1. In the top navigation, select the **Settings** tab.
 
-1. In the left navigation, select **Code Security**.
+1. In the left navigation, select **Advanced Security**.
 
-1. Find the **Code Security** section. Verify the **Private vulnerability reporting** setting is `enabled`.
+1. Find the **Private vulnerability reporting** setting and verify it is `enabled`.
 
 1. At the top navigation, click the **Security** tab.
 
