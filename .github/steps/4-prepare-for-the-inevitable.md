@@ -92,6 +92,8 @@ Now that the automated options are ready, let's create a guide for real-life hum
 
 1. We will ignore the provided template and instead use a recommendation from Mergington High School's IT department. Add the following content:
 
+   > 💡**Tip** If you switch to a branch that does not contain the same file, the editor will become empty. Press the **Restore** button to retrieve the previous editor's content.
+
    ```markdown
    # Mergington High School Security Policy
 
