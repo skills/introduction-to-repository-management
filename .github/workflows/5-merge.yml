@@ -88,9 +88,10 @@ jobs:
   finish_exercise:
     name: Finish Exercise
     needs: [find_exercise, post_review_content]
-    uses: skills/exercise-toolkit/.github/workflows/finish-exercise.yml@v0.3.0
+    uses: skills/exercise-toolkit/.github/workflows/finish-exercise.yml@57ecd963a3e54e6b01a30ebab57d5202a7afca3f
     with:
       issue-url: ${{ needs.find_exercise.outputs.issue-url }}
+      update-readme-with-congratulations: false
 
   disable_workflow:
     name: Disable this workflow
