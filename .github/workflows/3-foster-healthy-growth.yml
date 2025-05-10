@@ -153,7 +153,7 @@ jobs:
           template-file: exercise-toolkit/markdown-templates/step-feedback/step-results.md
           template-vars: >
             {
-              "step_number": 4,
+              "step_number": 3,
               "passed": ${{ steps.check-all-results.outputs.result }},
               "results_table": [
                   ${{ steps.check-code-of-conduct.outputs.result }},

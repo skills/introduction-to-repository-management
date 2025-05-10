@@ -104,7 +104,7 @@ jobs:
               JSON.parse(process.env['check1']),
               JSON.parse(process.env['check2']),
             ];
-  
+
             const result = checks.every(check => check.passed);
             return result
         env:
@@ -118,7 +118,7 @@ jobs:
           template-file: exercise-toolkit/markdown-templates/step-feedback/step-results.md
           template-vars: >
             {
-              "step_number": 3,
+              "step_number": 2,
               "passed": ${{ steps.check-all-results.outputs.result }},
               "results_table": [
                   ${{ steps.check-contributing.outputs.result }},
