@@ -33,7 +33,7 @@ The IT Club meeting is tomorrow, and you need to prepare for Ms. Rodriguez and M
 
 1. At the top navigation, return to the **Code** tab. Ensure you are on the `prepare-to-collaborate` branch.
 
-   <img width="265" alt="image showing the correct branch" src="https://github.com/user-attachments/assets/bd12d0cc-0920-4158-9e96-e3a8fb994c1a" />
+   <img width="350" alt="image showing the correct branch" src="https://github.com/user-attachments/assets/68cd1e7a-1b34-47eb-9f0b-095d47442b12" />
 
 1. In the top directory, create a new file called `CONTRIBUTING.md` (case sensitive).
 
