@@ -2,7 +2,11 @@
 
 _Learn the basics of several GitHub features that can help support a collaborative, friendly, and healthy project._
 
-## Welcome
+## Description
+
+<details>
+<summary>Activity description</summary><br/>
+
 
 - **Who is this for**: Developers with the need to start collaborating.
 - **What you'll learn**: The different ways to protect your repository's content as more people join as collaborators.
@@ -32,23 +36,61 @@ Simply copy the exercise to your account, then give your favorite Octocat (Mona)
 
 [![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=skills&template_name=introduction-to-repository-management&owner=%40me&name=skills-introduction-to-repository-management&description=Exercise:+introduction+to+repository+management&visibility=public)
 
+</details>
+
+## Adding rules to the repository
+
 <details>
-<summary>Having trouble? 🤷</summary><br/>
+<summary>Settings</summary><br/>
+  
+1. Access settings -> Branchs -> Add branch ruleset:
 
-When copying the exercise, we recommend the following settings:
+<img width="600" src="https://github.com/user-attachments/assets/d8d361a6-97ab-47c5-936f-693d59aa6ead"/>
 
-- For owner, choose your personal account or an organization to host the repository.
+2. Set a name -> Add status as active -> Define which branches to apply the rules to:
 
-- We recommend creating a public repository, since private repositories will use Actions minutes.
+<img width="600" src="https://github.com/user-attachments/assets/3d53e791-2a09-4dae-81d1-c24c214d4550"/>
 
-If the exercise isn't ready in 20 seconds, please check the [Actions](../../actions) tab.
+3. Check the following options:
 
-- Check to see if a job is running. Sometimes it simply takes a bit longer.
+<img width="600" src="https://github.com/user-attachments/assets/a33a53d5-526d-469a-8f4d-4895f1b09ef0"/>
 
-- If the page shows a failed job, please submit an issue. Nice, you found a bug! 🐛
+ 4. Click "Create" to create the branch protection rules:
+
+<img width="600" src="https://github.com/user-attachments/assets/a47392f3-20c1-4540-a3f3-cd7b1e8d33b9"/>
+
+5. You can see in "Rulesets":
+
+<img width="600" src="https://github.com/user-attachments/assets/d1db1706-1ec3-4c6e-a0de-0af319915e62"/>
 
 </details>
 
----
+## installation
+
+<details>
+<summary>Commands</summary><br/>
+  
+Clone the repository:
+```
+git clone https://github.com/thainarapenha/introduction-to-repository-management.git
+```
+
+Install Python dependencies (backend) - Windows:
+
+```
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+Install MongoDB locally:
+- I downloaded and installed MongoDB Community Server from the [official website](https://www.mongodb.com/try/download/community)
+
+Run backend:
+```
+uvicorn src.app:app --reload
+```
+
+</details>
 
 &copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
