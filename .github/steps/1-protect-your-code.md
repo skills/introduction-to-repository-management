@@ -89,7 +89,7 @@ To get started, let's add some protections so that no one accidentally breaks th
 
    <img width="250" alt="image" src="https://github.com/user-attachments/assets/ce30fd34-39b5-4e22-b348-4af61fd05cd1" />
 
-1. Find the the **Targets** section and use the **Add target** dropdown to add 2 entries:
+1. Find the **Targets** section and use the **Add target** dropdown to add 2 entries:
 
    1. Add the **Include default branch** option to ensure protections aren't bypassed by switching the default branch.
 
@@ -115,7 +115,7 @@ To get started, let's add some protections so that no one accidentally breaks th
 
 We know many teachers use different tools, so let's make sure they don't accidentally commit unnecessary files.
 
-1. At the top navigation, return to the **Code** tab ane verify you are on the `main` branch.
+1. At the top navigation, return to the **Code** tab and verify you are on the `main` branch.
 
 1. Above the list of files, click the **Add file** dropdown and select **Create new file**.
 
