@@ -18,7 +18,7 @@ jobs:
     if: |
       !github.event.repository.is_template
     name: Start Exercise
-    uses: skills/exercise-toolkit/.github/workflows/start-exercise.yml@v0.3.0
+    uses: skills/exercise-toolkit/.github/workflows/start-exercise.yml@v0.4
     with:
       exercise-title: "Introduction to Repository Management"
       intro-message: "In this exercise, you'll configure your repository for easier collaboration. You'll learn how to protect your code, prepare for collaboration, and foster healthy growth in your projects."
@@ -40,7 +40,7 @@ jobs:
         with:
           repository: skills/exercise-toolkit
           path: exercise-toolkit
-          ref: v0.3.0
+          ref: v0.4
 
       - name: Configure Git user
         run: |
