@@ -20,7 +20,7 @@ jobs:
     if: |
       !github.event.repository.is_template
     name: Find Exercise Issue
-    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.3.0
+    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.6.0
 
   check_step_work:
     name: Check step work
@@ -38,7 +38,7 @@ jobs:
         with:
           repository: skills/exercise-toolkit
           path: exercise-toolkit
-          ref: v0.3.0
+          ref: v0.6.0
 
       # START: Check practical exercise
 
@@ -79,7 +79,7 @@ jobs:
         with:
           repository: skills/exercise-toolkit
           path: exercise-toolkit
-          ref: v0.3.0
+          ref: v0.6.0
 
       - name: Build message - add step content
         id: build-message-add-step-content
