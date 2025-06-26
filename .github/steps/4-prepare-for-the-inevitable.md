@@ -29,7 +29,6 @@ Let's configure Dependabot to use default settings and automatically combine fix
    - **Dependabot alerts**: `enabled`
    - **Dependabot security updates**: `enabled`
    - **Grouped security updates**: `enabled`
-   - **Dependabot on Actions runners**: `enabled`
 
 1. Find **Dependabot version updates** and click the **Enable** button. This will open an editor to create a configuration file.
 
