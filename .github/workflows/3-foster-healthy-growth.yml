@@ -34,12 +34,14 @@ jobs:
     steps:
       - name: Checkout branch - prepare-to-collaborate
         uses: actions/checkout@v4
+        continue-on-error: true
         with:
           path: prepare-to-collaborate
           ref: prepare-to-collaborate
 
       - name: Checkout branch - add-issue-templates
         uses: actions/checkout@v4
+        continue-on-error: true
         with:
           path: add-issue-templates
           ref: add-issue-templates
