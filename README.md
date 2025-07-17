@@ -1,54 +1,70 @@
-# Introduction to Repository Management
+# 🌟 Introduction to Repository Management
 
-_Learn the basics of several GitHub features that can help support a collaborative, friendly, and healthy project._
+_Learn how to use powerful GitHub features to foster a collaborative, welcoming, and well-managed project environment._
 
-## Welcome
+---
 
-- **Who is this for**: Developers with the need to start collaborating.
-- **What you'll learn**: The different ways to protect your repository's content as more people join as collaborators.
-- **What you'll build**: You will prepare Mergington High School's extracurricular activities website repository so additional teachers can safely collaborate.
-- **Prerequisites**:
-  - Skills exercise: [Introduction to GitHub](https://github.com/skills/introduction-to-github)
-  - Skills exercise: [Communicate using Markdown](https://github.com/skills/communicate-using-markdown)
-  - Skills exercise: [Review pull requests](https://github.com/skills/review-pull-requests)
-- **How long**: This exercise takes less than one hour to complete.
+## 👋 Welcome!
 
-In this exercise, you will:
+### 🧑‍💻 Who is this for?
+Developers who are ready to start collaborating effectively on GitHub projects.
 
-1. Add a simple rulesets and configuration to restrict repository content.
-1. Communicate procedures to help guide collaborators.
-1. Assign responsibility of parts of the code to particular collaborators.
-1. Learn the difference between collaboration in a personal repository and organization repository.
-1. Establish ground rules to promote a health collaboration environment.
-1. Establish a process for managing security updates.
+### 📚 What you'll learn:
+You'll explore various ways to protect your repository's content, especially as more collaborators join your project.
 
-> [!IMPORTANT]
-> This exercise is meant to provide an overview of many GitHub features.
-> It will provide references to learn more but not a detailed explanation for any specific subject.
+### 🛠️ What you'll build:
+You’ll configure **Mergington High School’s extracurricular activities website** repository to allow safe and smooth collaboration between teachers.
 
-### How to start this exercise
+### ✅ Prerequisites:
+Make sure you’ve completed the following GitHub Skills exercises:
+- [Introduction to GitHub](https://github.com/skills/introduction-to-github)
+- [Communicate using Markdown](https://github.com/skills/communicate-using-markdown)
+- [Review pull requests](https://github.com/skills/review-pull-requests)
 
-Simply copy the exercise to your account, then give your favorite Octocat (Mona) **about 20 seconds** to prepare the first lesson, then **refresh the page**.
+### ⏱️ Estimated time:
+Less than **1 hour** to complete.
 
-[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=skills&template_name=introduction-to-repository-management&owner=%40me&name=skills-introduction-to-repository-management&description=Exercise:+introduction+to+repository+management&visibility=public)
+---
+
+## 🚀 What You’ll Do
+
+By the end of this exercise, you’ll be able to:
+
+1. ✅ Add rules and configurations to protect your repository.
+2. 🗣️ Communicate clear procedures for collaborators.
+3. 👥 Assign responsibilities for different parts of the project.
+4. 🔍 Understand the differences between personal and organizational repositories.
+5. 🤝 Establish ground rules for healthy collaboration.
+6. 🔐 Set up a process for managing security updates.
+
+> ⚠️ **Note**:  
+> This is an overview of several GitHub features. You’ll get helpful references for further learning, but not in-depth tutorials on each topic.
+
+---
+
+## 📌 How to Get Started
+
+1. **Copy this exercise to your GitHub account** by clicking the button below.
+2. Wait about **20 seconds** for your favorite Octocat (Mona 🐙) to set things up.
+3. **Refresh the page** to begin!
+
+[![Copy Exercise →](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=skills&template_name=introduction-to-repository-management&owner=%40me&name=skills-introduction-to-repository-management&description=Exercise:+introduction+to+repository+management&visibility=public)
 
 <details>
-<summary>Having trouble? 🤷</summary><br/>
+<summary>🙋 Having trouble?</summary><br/>
 
-When copying the exercise, we recommend the following settings:
+If you run into any issues while copying the repository, try these tips:
 
-- For owner, choose your personal account or an organization to host the repository.
+- **Owner**: Choose either your personal GitHub account or an organization you belong to.
+- **Visibility**: We recommend setting it to **public** to avoid consuming GitHub Actions minutes on a private repo.
 
-- We recommend creating a public repository, since private repositories will use Actions minutes.
-
-If the exercise isn't ready in 20 seconds, please check the [Actions](../../actions) tab.
-
-- Check to see if a job is running. Sometimes it simply takes a bit longer.
-
-- If the page shows a failed job, please submit an issue. Nice, you found a bug! 🐛
+If it's taking longer than 20 seconds:
+- Go to the [Actions](../../actions) tab to see if a job is running.
+- If there’s a failed job, feel free to open an issue — congrats, you may have found a bug! 🐞
 
 </details>
 
 ---
 
-&copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
+&copy; 2025 GitHub  
+[📜 Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [📄 MIT License](https://gh.io/mit)
