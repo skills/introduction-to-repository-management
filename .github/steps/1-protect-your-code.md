@@ -27,9 +27,9 @@ When more teachers start helping with the Mergington High activities website, it
 <details>
 <summary>Show Steps</summary>
 
-In other exercise, we have been developing the Extracurricular activities website. You can follow these steps to start up the development environment and try it out.
+In [Getting Started with GitHub Copilot](https://github.com/skills/getting-started-with-github-copilot/) exercise, we have been developing the Extracurricular activities website. You can follow these steps to start up the development environment and try it out.
 
-> ! **Important:** Opening a development environment and running the application is not necessary to complete this exercise. You can skip this activity if desired.
+> ❗ **Important:** Opening a development environment and running the application is **NOT** necessary to complete this exercise. You can skip this activity if desired.
 
 1. Right-click the below button to open the **Create Codespace** page in a new tab. Use the default configuration.
 
@@ -42,7 +42,7 @@ In other exercise, we have been developing the Extracurricular activities websit
    <img width="300" alt="copilot extension for VS Code" src="https://github.com/user-attachments/assets/ef1ef984-17fc-4b20-a9a6-65a866def468" /><br/>
    <img width="300" alt="python extension for VS Code" src="https://github.com/user-attachments/assets/3040c0f5-1658-47e2-a439-20504a384f77" />
 
-1. Try running the the application. In the left sidebar, select the **Run and Debug** tab and then press the **Start Debugging** icon.
+1. Try running the application. In the left sidebar, select the **Run and Debug** tab and then press the **Start Debugging** icon.
 
    <details>
    <summary>📸 Show screenshot</summary><br/>
