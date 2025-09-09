@@ -4,29 +4,24 @@ Authentication endpoints for the High School Management System API
 
 from fastapi import APIRouter, HTTPException
 from typing import Dict, Any
-import hashlib
 
-from ..database import teachers_collection
+from ..database import teachers_collection, verify_password
 
 router = APIRouter(
     prefix="/auth",
     tags=["auth"]
 )
 
-def hash_password(password):
-    """Hash password using SHA-256"""
-    return hashlib.sha256(password.encode()).hexdigest()
+# Password hashing/verification handled by Argon2 functions in database.py
 
 @router.post("/login")
 def login(username: str, password: str) -> Dict[str, Any]:
     """Login a teacher account"""
-    # Hash the provided password
-    hashed_password = hash_password(password)
-    
     # Find the teacher in the database
     teacher = teachers_collection.find_one({"_id": username})
-    
-    if not teacher or teacher["password"] != hashed_password:
+
+    # Verify password using Argon2 verifier from database.py
+    if not teacher or not verify_password(teacher.get("password", ""), password):
         raise HTTPException(status_code=401, detail="Invalid username or password")
     
     # Return teacher information (excluding password)
