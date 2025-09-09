@@ -3,7 +3,7 @@ MongoDB database configuration and setup for Mergington High School API
 """
 
 from pymongo import MongoClient
-from argon2 import PasswordHasher
+from argon2 import PasswordHasher, exceptions as argon2_exceptions
 
 # Connect to MongoDB
 client = MongoClient('mongodb://localhost:27017/')
@@ -16,6 +16,22 @@ def hash_password(password):
     """Hash password using Argon2"""
     ph = PasswordHasher()
     return ph.hash(password)
+
+
+def verify_password(hashed_password: str, plain_password: str) -> bool:
+    """Verify a plain password against an Argon2 hashed password.
+
+    Returns True when the password matches, False otherwise.
+    """
+    ph = PasswordHasher()
+    try:
+        ph.verify(hashed_password, plain_password)
+        return True
+    except argon2_exceptions.VerifyMismatchError:
+        return False
+    except Exception:
+        # For any other exception (e.g., invalid hash), treat as non-match
+        return False
 
 def init_database():
     """Initialize database if empty"""
