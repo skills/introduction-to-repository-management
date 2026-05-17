@@ -19,7 +19,7 @@ In this exercise, you will:
 1. Communicate procedures to help guide collaborators.
 1. Assign responsibility of parts of the code to particular collaborators.
 1. Learn the difference between collaboration in a personal repository and organization repository.
-1. Establish ground rules to promote a health collaboration environment.
+1. Establish ground rules to promote a healthy collaboration environment.
 1. Establish a process for managing security updates.
 
 > [!IMPORTANT]
