@@ -77,9 +77,9 @@ Now that the automated options are ready, let's create a guide for real-life hum
 
 1. Find the **Private vulnerability reporting** setting and verify it is `enabled`.
 
-1. At the top navigation, click the **Security** tab.
+1. At the top navigation, click the **Security and quality** tab.
 
-1. In the left navigation, click the **Policy** option.
+1. In the left navigation, select **Security policy**.
 
 1. Click the **Start setup** button. An editor will be started to create the file `SECURITY.md`.
 
