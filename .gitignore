@@ -1,0 +1,24 @@
+# Python backend for club management
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+.env
+venv/
+.venv/
+
+# Teacher IDE settings
+.vscode/
+.idea/
+
+# Local development and testing
+instance/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Staff computer files
+.DS_Store
+Thumbs.db

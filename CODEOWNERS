@@ -1,0 +1,7 @@
+# Core functionality - changes here should be rare!
+/src/app.py                   @agiledevopsguru
+/src/backend/database.py      @agiledevopsguru
+/src/backend/routers/auth.py  @agiledevopsguru
+
+# The frontend will need refactored soon to be more object oriented.
+/src/static/                   @agiledevopsguru
